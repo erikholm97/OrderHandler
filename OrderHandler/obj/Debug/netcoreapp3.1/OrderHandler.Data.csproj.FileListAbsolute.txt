@@ -10,3 +10,15 @@ C:\CGI\OrderHandler\OrderHandler\obj\Debug\netcoreapp3.1\OrderHandler.Data.Assem
 C:\CGI\OrderHandler\OrderHandler\obj\Debug\netcoreapp3.1\OrderHandler.Data.dll
 C:\CGI\OrderHandler\OrderHandler\obj\Debug\netcoreapp3.1\OrderHandler.Data.pdb
 C:\CGI\OrderHandler\OrderHandler\obj\Debug\netcoreapp3.1\OrderHandler.Data.genruntimeconfig.cache
+C:\www\test\OrderHandler\OrderHandler\bin\Debug\netcoreapp3.1\OrderHandler.Data.deps.json
+C:\www\test\OrderHandler\OrderHandler\bin\Debug\netcoreapp3.1\OrderHandler.Data.runtimeconfig.json
+C:\www\test\OrderHandler\OrderHandler\bin\Debug\netcoreapp3.1\OrderHandler.Data.runtimeconfig.dev.json
+C:\www\test\OrderHandler\OrderHandler\bin\Debug\netcoreapp3.1\OrderHandler.Data.dll
+C:\www\test\OrderHandler\OrderHandler\bin\Debug\netcoreapp3.1\OrderHandler.Data.pdb
+C:\www\test\OrderHandler\OrderHandler\obj\Debug\netcoreapp3.1\OrderHandler.Data.csprojAssemblyReference.cache
+C:\www\test\OrderHandler\OrderHandler\obj\Debug\netcoreapp3.1\OrderHandler.Data.AssemblyInfoInputs.cache
+C:\www\test\OrderHandler\OrderHandler\obj\Debug\netcoreapp3.1\OrderHandler.Data.AssemblyInfo.cs
+C:\www\test\OrderHandler\OrderHandler\obj\Debug\netcoreapp3.1\OrderHandler.Data.csproj.CoreCompileInputs.cache
+C:\www\test\OrderHandler\OrderHandler\obj\Debug\netcoreapp3.1\OrderHandler.Data.dll
+C:\www\test\OrderHandler\OrderHandler\obj\Debug\netcoreapp3.1\OrderHandler.Data.pdb
+C:\www\test\OrderHandler\OrderHandler\obj\Debug\netcoreapp3.1\OrderHandler.Data.genruntimeconfig.cache
