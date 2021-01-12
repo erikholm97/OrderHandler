@@ -12,9 +12,6 @@ namespace OrderHandler
         public int Id { get; set; }
         [Required]
         public string CustomerName { get; set; }
-        [Required]
-        [ForeignKey("OrderRows")]
-        public List<OrderRow> OrderRows { get; set; }
         
         public List<Order> GetAllOrders()
         {

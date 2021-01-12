@@ -199,3 +199,10 @@ OrderHandler.UI/obj/Debug/netcoreapp3.1/OrderHandler.UI.Views.dll
 OrderHandler.UI/obj/Debug/netcoreapp3.1/OrderHandler.UI.csproj.FileListAbsolute.txt
 OrderHandler.UI/obj/Debug/netcoreapp3.1/OrderHandler.UI.assets.cache
 .vs/OrderHandler/v16/.suo
+.vs/OrderHandler/v16/.suo
+OrderHandler.UI/obj/Debug/netcoreapp3.1/OrderHandler.UI.Views.dll
+OrderHandler/bin/Debug/netcoreapp3.1/OrderHandler.Data.dll
+OrderHandler/bin/Debug/netcoreapp3.1/OrderHandler.Data.pdb
+OrderHandler/DataSeeder.cs
+OrderHandler/obj/Debug/netcoreapp3.1/OrderHandler.Data.dll
+OrderHandler/obj/Debug/netcoreapp3.1/OrderHandler.Data.pdb

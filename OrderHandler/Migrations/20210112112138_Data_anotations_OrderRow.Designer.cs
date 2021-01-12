@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OrderHandler.Data;
 
 namespace OrderHandler.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210112112138_Data_anotations_OrderRow")]
+    partial class Data_anotations_OrderRow
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -41,15 +43,6 @@ namespace OrderHandler.Data.Migrations
                         .IsUnique();
 
                     b.ToTable("Articles");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            ArticleName = "Träpall",
-                            ArticleNumber = 55555,
-                            Price = 50
-                        });
                 });
 
             modelBuilder.Entity("OrderHandler.Data.OrderRow", b =>
@@ -78,16 +71,6 @@ namespace OrderHandler.Data.Migrations
                     b.HasIndex("OrderId");
 
                     b.ToTable("OrderRows");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            ArticleAmount = 13,
-                            ArticleId = 1,
-                            OrderId = 1,
-                            RowNumber = 1
-                        });
                 });
 
             modelBuilder.Entity("OrderHandler.Order", b =>
@@ -104,13 +87,6 @@ namespace OrderHandler.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Orders");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CustomerName = "CGI"
-                        });
                 });
 
             modelBuilder.Entity("OrderHandler.Data.OrderRow", b =>
