@@ -152,3 +152,4 @@ C:\www\test\OrderHandler\OrderHandler.UI\obj\Debug\netcoreapp3.1\OrderHandler.UI
 C:\www\test\OrderHandler\OrderHandler.UI\obj\Debug\netcoreapp3.1\OrderHandler.UI.dll
 C:\www\test\OrderHandler\OrderHandler.UI\obj\Debug\netcoreapp3.1\OrderHandler.UI.pdb
 C:\www\test\OrderHandler\OrderHandler.UI\obj\Debug\netcoreapp3.1\OrderHandler.UI.genruntimeconfig.cache
+C:\www\test\OrderHandler\OrderHandler.UI\obj\Debug\netcoreapp3.1\Razor\Views\Order\Edit.cshtml.g.cs

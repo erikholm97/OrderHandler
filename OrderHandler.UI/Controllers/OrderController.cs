@@ -16,5 +16,14 @@ namespace OrderHandler.UI.Controllers
 
             return View(orders);
         }
+
+        public IActionResult Edit(int orderId)
+        {
+            Order order = new Order();
+
+            order.GetOrderById(orderId);
+
+            return View(order);
+        }
     }
 }

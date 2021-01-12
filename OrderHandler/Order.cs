@@ -22,6 +22,16 @@ namespace OrderHandler
                 return orders;
             };
         }
+
+        public Order GetOrderById(int id)
+        {
+            using (ApplicationDbContext db = new ApplicationDbContext())
+            {
+                var order = db.Orders.FirstOrDefault(x => x.Id == id);
+
+                return order;
+            };
+        }
     }
 }
 
