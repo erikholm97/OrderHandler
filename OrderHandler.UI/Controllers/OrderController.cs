@@ -17,11 +17,11 @@ namespace OrderHandler.UI.Controllers
             return View(orders);
         }
 
-        public IActionResult Edit(int orderId)
+        public IActionResult Edit(int id)
         {
             Order order = new Order();
 
-            order.GetOrderById(orderId);
+            order.GetOrderById(id);
 
             return View(order);
         }
