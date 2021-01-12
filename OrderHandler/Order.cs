@@ -1,4 +1,5 @@
 ﻿using OrderHandler.Data;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -31,6 +32,31 @@ namespace OrderHandler
 
                 return order;
             };
+        }
+
+        public void DeleteOrder(Order order)
+        {
+            using (ApplicationDbContext db = new ApplicationDbContext())
+            {
+                var orderToDelete = db.Orders.FirstOrDefault(x => x.Id == order.Id);
+
+                db.Remove(orderToDelete);
+                db.SaveChanges();
+            };
+        }
+
+        public void UpdateOrder(Order order)
+        {
+            using (ApplicationDbContext db = new ApplicationDbContext())
+            {
+                var orderToUpdate = db.Orders
+                    .Where(o => o.Id == order.Id).FirstOrDefault();
+
+                orderToUpdate.CustomerName = order.CustomerName;
+
+                db.SaveChanges();
+
+            }
         }
     }
 }

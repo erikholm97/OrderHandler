@@ -7,6 +7,22 @@ namespace OrderHandler.UI.Models
 {
     public class OrderViewModel
     {
-        //Todo create model for displaying order, orderrows, articles.
+        public string CustomerName { get; set; }
+
+        public int ArticleAmount { get; set; }
+        /// <summary>
+        /// Article
+        /// </summary>
+        public int ArticleNumber { get; set; }
+        /// <summary>
+        /// Article
+        /// </summary>
+        public string ArticleName { get; set; }
+        /// <summary>
+        /// Article
+        /// </summary>
+        public int Price { get; set; }
     }
 }
+
+
