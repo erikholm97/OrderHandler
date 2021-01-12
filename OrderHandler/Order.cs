@@ -1,6 +1,7 @@
 ﻿using OrderHandler.Data;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 
 namespace OrderHandler
@@ -12,6 +13,7 @@ namespace OrderHandler
         [Required]
         public string CustomerName { get; set; }
         [Required]
+        [ForeignKey("OrderRows")]
         public List<OrderRow> OrderRows { get; set; }
         
         public List<Order> GetAllOrders()

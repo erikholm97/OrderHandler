@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace OrderHandler.Data
@@ -13,6 +14,8 @@ namespace OrderHandler.Data
         [Required]
         public int ArticleAmount { get; set; }
         [Required]
+        [ForeignKey("Articles")]
+        public int ArticleId { get; set; }
         public Article Article { get; set; }
     }
 }
