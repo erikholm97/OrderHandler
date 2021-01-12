@@ -18,9 +18,22 @@ namespace OrderHandler.UI.Controllers
             return View(orders);
         }
 
-        public IActionResult Create(OrderViewModel order)
+        public IActionResult Create()
         {
             return View();
+        }
+
+        [HttpPost]
+        public IActionResult Create(OrderViewModel order)
+        {
+            Order orderToCreate = new Order()
+            {
+                CustomerName = order.CustomerName
+            };
+
+            orderToCreate.CreateOrder(orderToCreate);
+
+            return RedirectToAction("Index");
         }
 
         public IActionResult Edit(int id)

@@ -34,6 +34,19 @@ namespace OrderHandler
             };
         }
 
+        public void CreateOrder(Order orderToCreate)
+        {
+            using(ApplicationDbContext db = new ApplicationDbContext())
+            {
+                db.Orders.Add(orderToCreate);
+
+                db.SaveChanges();
+
+                var orderId = orderToCreate.Id;
+
+            }
+        }
+
         public void DeleteOrder(Order order)
         {
             using (ApplicationDbContext db = new ApplicationDbContext())
