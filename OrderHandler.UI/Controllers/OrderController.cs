@@ -56,6 +56,17 @@ namespace OrderHandler.UI.Controllers
             return RedirectToAction("Index");
         }
 
+        public IActionResult Details(int id)
+        {
+            Order order = new Order();
+
+            OrderViewModel orderView = new OrderViewModel();
+
+            order.GetOrderWithOrderRows(id);
+
+            return View(orderView);
+        }
+
         public IActionResult Edit(int id)
         {
             Order order = new Order();

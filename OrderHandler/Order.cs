@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace OrderHandler
 {
@@ -68,6 +69,15 @@ namespace OrderHandler
                 orderToUpdate.CustomerName = order.CustomerName;
 
                 db.SaveChanges();
+
+            }
+        }
+
+        public void GetOrderWithOrderRows(int id)
+        {
+            using (ApplicationDbContext db = new ApplicationDbContext())
+            {
+                var orderWithOrderRows = db.OrderRows.Include(x => x.Article).FirstOrDefault(x => x.OrderId == id);
 
             }
         }
