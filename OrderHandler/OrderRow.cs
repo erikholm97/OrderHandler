@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 using System.Text;
 
 namespace OrderHandler.Data
@@ -34,6 +35,15 @@ namespace OrderHandler.Data
                 db.SaveChanges();
 
                 return orderRowToCreate.Id;
+            }
+        }
+
+        public void GetOrderRowsByOrderId(int id)
+        {
+            using(ApplicationDbContext db = new ApplicationDbContext())
+            {
+                var orderRows = db.OrderRows.Where(x => x.OrderId == id);
+
             }
         }
     }

@@ -59,10 +59,13 @@ namespace OrderHandler.UI.Controllers
         public IActionResult Details(int id)
         {
             Order order = new Order();
+            order.GetOrderById(id);
 
+            OrderRow orderRows = new OrderRow();
+
+            orderRows.GetOrderRowsByOrderId(id);
+            
             OrderViewModel orderView = new OrderViewModel();
-
-            order.GetOrderWithOrderRows(id);
 
             return View(orderView);
         }

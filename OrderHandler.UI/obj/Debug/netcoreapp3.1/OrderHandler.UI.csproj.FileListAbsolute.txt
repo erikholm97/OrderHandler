@@ -313,3 +313,4 @@ C:\CGI\OrderHandler\OrderHandler.UI\obj\Debug\netcoreapp3.1\Razor\Views\Order\Cr
 C:\www\test\OrderHandler\OrderHandler.UI\obj\Debug\netcoreapp3.1\Razor\Views\Order\Create.cshtml.g.cs
 C:\www\test\OrderHandler\OrderHandler.UI\obj\Debug\netcoreapp3.1\Razor\Views\Order\Delete.cshtml.g.cs
 C:\www\test\OrderHandler\OrderHandler.UI\obj\Debug\netcoreapp3.1\Razor\Views\Order\Details.cshtml.g.cs
+C:\CGI\OrderHandler\OrderHandler.UI\obj\Debug\netcoreapp3.1\Razor\Views\Order\Details.cshtml.g.cs
