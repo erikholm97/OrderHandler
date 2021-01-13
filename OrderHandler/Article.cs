@@ -15,5 +15,17 @@ namespace OrderHandler.Data
         public string ArticleName { get; set; }
         [Required]
         public int Price { get; set; }
+
+        public int CreateArticle(Article articleToCreate)
+        {
+            using (ApplicationDbContext db = new ApplicationDbContext())
+            {
+                db.Articles.Add(articleToCreate);
+
+                db.SaveChanges();
+
+                return articleToCreate.Id;
+            }
+        }
     }
 }

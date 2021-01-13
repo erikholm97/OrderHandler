@@ -34,7 +34,7 @@ namespace OrderHandler
             };
         }
 
-        public void CreateOrder(Order orderToCreate)
+        public int CreateOrder(Order orderToCreate)
         {
             using(ApplicationDbContext db = new ApplicationDbContext())
             {
@@ -42,7 +42,7 @@ namespace OrderHandler
 
                 db.SaveChanges();
 
-                var orderId = orderToCreate.Id;
+                return orderToCreate.Id;
 
             }
         }

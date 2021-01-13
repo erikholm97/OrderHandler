@@ -24,5 +24,17 @@ namespace OrderHandler.Data
         [ForeignKey("Articles")]
         public int ArticleId { get; set; }
         public Article Article { get; set; }
+
+        public int CreateOrderRow(OrderRow orderRowToCreate)
+        {
+            using (ApplicationDbContext db = new ApplicationDbContext())
+            {
+                db.OrderRows.Add(orderRowToCreate);
+
+                db.SaveChanges();
+
+                return orderRowToCreate.Id;
+            }
+        }
     }
 }

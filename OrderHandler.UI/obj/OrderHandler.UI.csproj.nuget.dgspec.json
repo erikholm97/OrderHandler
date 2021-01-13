@@ -1,24 +1,26 @@
 {
   "format": 1,
   "restore": {
-    "C:\\CGI\\OrderHandler\\OrderHandler.UI\\OrderHandler.UI.csproj": {}
+    "C:\\www\\test\\OrderHandler\\OrderHandler.UI\\OrderHandler.UI.csproj": {}
   },
   "projects": {
-    "C:\\CGI\\OrderHandler\\OrderHandler.UI\\OrderHandler.UI.csproj": {
+    "C:\\www\\test\\OrderHandler\\OrderHandler.UI\\OrderHandler.UI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\CGI\\OrderHandler\\OrderHandler.UI\\OrderHandler.UI.csproj",
+        "projectUniqueName": "C:\\www\\test\\OrderHandler\\OrderHandler.UI\\OrderHandler.UI.csproj",
         "projectName": "OrderHandler.UI",
-        "projectPath": "C:\\CGI\\OrderHandler\\OrderHandler.UI\\OrderHandler.UI.csproj",
-        "packagesPath": "C:\\Users\\erikh\\.nuget\\packages\\",
-        "outputPath": "C:\\CGI\\OrderHandler\\OrderHandler.UI\\obj\\",
+        "projectPath": "C:\\www\\test\\OrderHandler\\OrderHandler.UI\\OrderHandler.UI.csproj",
+        "packagesPath": "C:\\Users\\erik\\.nuget\\packages\\",
+        "outputPath": "C:\\www\\test\\OrderHandler\\OrderHandler.UI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\",
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\erikh\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\erik\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 18.2.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 19.2.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
@@ -26,14 +28,17 @@
           "netcoreapp3.1"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\DevExpress 18.2\\Components\\System\\Components\\Packages": {},
+          "C:\\Program Files (x86)\\DevExpress 19.2\\Components\\System\\Components\\Packages": {},
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "C:\\CGI\\OrderHandler\\OrderHandler\\OrderHandler.Data.csproj": {
-                "projectPath": "C:\\CGI\\OrderHandler\\OrderHandler\\OrderHandler.Data.csproj"
+              "C:\\www\\test\\OrderHandler\\OrderHandler\\OrderHandler.Data.csproj": {
+                "projectPath": "C:\\www\\test\\OrderHandler\\OrderHandler\\OrderHandler.Data.csproj"
               }
             }
           }
@@ -46,6 +51,7 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "dependencies": {
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
@@ -84,25 +90,27 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\CGI\\OrderHandler\\OrderHandler\\OrderHandler.Data.csproj": {
+    "C:\\www\\test\\OrderHandler\\OrderHandler\\OrderHandler.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\CGI\\OrderHandler\\OrderHandler\\OrderHandler.Data.csproj",
+        "projectUniqueName": "C:\\www\\test\\OrderHandler\\OrderHandler\\OrderHandler.Data.csproj",
         "projectName": "OrderHandler.Data",
-        "projectPath": "C:\\CGI\\OrderHandler\\OrderHandler\\OrderHandler.Data.csproj",
-        "packagesPath": "C:\\Users\\erikh\\.nuget\\packages\\",
-        "outputPath": "C:\\CGI\\OrderHandler\\OrderHandler\\obj\\",
+        "projectPath": "C:\\www\\test\\OrderHandler\\OrderHandler\\OrderHandler.Data.csproj",
+        "packagesPath": "C:\\Users\\erik\\.nuget\\packages\\",
+        "outputPath": "C:\\www\\test\\OrderHandler\\OrderHandler\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\",
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\erikh\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\erik\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 18.2.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 19.2.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
@@ -110,11 +118,14 @@
           "netcoreapp3.1"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\DevExpress 18.2\\Components\\System\\Components\\Packages": {},
+          "C:\\Program Files (x86)\\DevExpress 19.2\\Components\\System\\Components\\Packages": {},
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
             "projectReferences": {}
           }
         },
@@ -126,6 +137,7 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "dependencies": {
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
@@ -163,7 +175,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }

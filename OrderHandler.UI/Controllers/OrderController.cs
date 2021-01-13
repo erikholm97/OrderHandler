@@ -32,6 +32,8 @@ namespace OrderHandler.UI.Controllers
                 CustomerName = order.CustomerName
             };
 
+            int orderId = orderToCreate.CreateOrder(orderToCreate);
+
             Article articleToCreate = new Article()
             {
                 ArticleName = order.ArticleName,
@@ -39,17 +41,18 @@ namespace OrderHandler.UI.Controllers
                 ArticleNumber = order.ArticleNumber
             };
 
+            int articleId = articleToCreate.CreateArticle(articleToCreate);
+
             OrderRow orderRowToCreate = new OrderRow()
             {
-                OrderId = orderToCreate.Id,
-                ArticleId = articleToCreate.Id, //Todo propery for orderrow in viewmodel
+                OrderId = orderId,
                 RowNumber = 1,
                 ArticleAmount = order.ArticleAmount,
-
+                ArticleId = articleId
             };
 
-            orderToCreate.CreateOrder(orderToCreate);
-
+            int orderRowId = orderRowToCreate.CreateOrderRow(orderRowToCreate);
+            
             return RedirectToAction("Index");
         }
 
@@ -65,6 +68,8 @@ namespace OrderHandler.UI.Controllers
             Order order = new Order();
 
             order = order.GetOrderById(id);
+
+            order.DeleteOrder(order);
 
             return RedirectToAction("Index");
         }
