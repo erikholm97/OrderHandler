@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
+using Microsoft.EntityFrameworkCore;
 
 namespace OrderHandler.Data
 {
@@ -38,12 +39,13 @@ namespace OrderHandler.Data
             }
         }
 
-        public void GetOrderRowsByOrderId(int id)
+        public List<OrderRow> GetOrderRowsByOrderId(int id)
         {
             using(ApplicationDbContext db = new ApplicationDbContext())
             {
-                var orderRows = db.OrderRows.Where(x => x.OrderId == id);
+                var orderRows = db.OrderRows.Include(x => x.Article).Where(x => x.OrderId == id).ToList();
 
+                return orderRows;
             }
         }
     }

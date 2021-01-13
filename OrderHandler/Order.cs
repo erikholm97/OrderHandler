@@ -72,15 +72,6 @@ namespace OrderHandler
 
             }
         }
-
-        public void GetOrderWithOrderRows(int id)
-        {
-            using (ApplicationDbContext db = new ApplicationDbContext())
-            {
-                var orderWithOrderRows = db.OrderRows.Include(x => x.Article).FirstOrDefault(x => x.OrderId == id);
-
-            }
-        }
     }
 }
 
