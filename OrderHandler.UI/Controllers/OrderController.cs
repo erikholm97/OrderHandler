@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using OrderHandler.Data;
 using OrderHandler.UI.Models;
 
 namespace OrderHandler.UI.Controllers
@@ -29,6 +30,22 @@ namespace OrderHandler.UI.Controllers
             Order orderToCreate = new Order()
             {
                 CustomerName = order.CustomerName
+            };
+
+            Article articleToCreate = new Article()
+            {
+                ArticleName = order.ArticleName,
+                Price = order.Price,
+                ArticleNumber = order.ArticleNumber
+            };
+
+            OrderRow orderRowToCreate = new OrderRow()
+            {
+                OrderId = orderToCreate.Id,
+                ArticleId = articleToCreate.Id, //Todo propery for orderrow in viewmodel
+                RowNumber = 1,
+                ArticleAmount = order.ArticleAmount,
+
             };
 
             orderToCreate.CreateOrder(orderToCreate);
