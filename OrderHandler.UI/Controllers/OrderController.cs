@@ -49,7 +49,7 @@ namespace OrderHandler.UI.Controllers
 
             order = order.GetOrderById(id);
 
-            return View(order);
+            return RedirectToAction("Index");
         }
         [HttpPost]
         public IActionResult Delete(Order order)
