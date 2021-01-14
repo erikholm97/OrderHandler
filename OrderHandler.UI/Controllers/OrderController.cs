@@ -52,8 +52,9 @@ namespace OrderHandler.UI.Controllers
             };
 
             int orderRowId = orderRowToCreate.CreateOrderRow(orderRowToCreate);
-            
+
             return RedirectToAction("Index");
+
         }
 
         public IActionResult Details(int id)
@@ -72,16 +73,20 @@ namespace OrderHandler.UI.Controllers
 
             orderView.OrderRow = new List<OrderRowViewModel>();
 
-            orderView.OrderRow.Add(new OrderRowViewModel()
+            if(listOfOrders.Count > 0)
             {
-                ArticleAmount = listOfOrders[0].ArticleAmount,
-                ArticleName = listOfOrders[0].Article.ArticleName,
-                ArticleNumber =listOfOrders[0].Article.ArticleNumber,
-                Price = listOfOrders[0].Article.Price
-            });
+                foreach (var orderRow in listOfOrders)
+                {
+                    orderView.OrderRow.Add(new OrderRowViewModel()
+                    {
+                        ArticleAmount = orderRow.ArticleAmount,
+                        ArticleName = orderRow.Article.ArticleName,
+                        ArticleNumber = orderRow.Article.ArticleNumber,
+                        Price = orderRow.Article.Price
+                    });
+                }
+            }
           
-            //Todo display list of orders.
-
             return View(orderView);
         }
 
@@ -102,6 +107,7 @@ namespace OrderHandler.UI.Controllers
 
             return RedirectToAction("Index");
         }
+
         [HttpPost]
         public IActionResult Delete(Order order)
         {
