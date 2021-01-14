@@ -1,10 +1,12 @@
-﻿@model OrderHandler.UI.Models.OrderViewModel
+﻿@model OrderHandler.UI.Models.OrderViewModel1
 
 @{
     ViewData["Title"] = "Create";
 }
 
-<h1>Create Order</h1>
+<h1>Create</h1>
+
+<h4>Create Order</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -14,26 +16,6 @@
                 <label asp-for="CustomerName" class="control-label"></label>
                 <input asp-for="CustomerName" class="form-control" />
                 <span asp-validation-for="CustomerName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ArticleAmount" class="control-label"></label>
-                <input asp-for="ArticleAmount" class="form-control" />
-                <span asp-validation-for="ArticleAmount" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ArticleNumber" class="control-label"></label>
-                <input asp-for="ArticleNumber" class="form-control" />
-                <span asp-validation-for="ArticleNumber" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ArticleName" class="control-label"></label>
-                <input asp-for="ArticleName" class="form-control" />
-                <span asp-validation-for="ArticleName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Price" class="control-label"></label>
-                <input asp-for="Price" class="form-control" />
-                <span asp-validation-for="Price" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
@@ -48,4 +30,18 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    $(function () {
+    $("#add").click(function (e) {
+    e.preventDefault();
+    var i = ($(".items").length) / 2;
+    var n = '
+    <br />'+'
+    <input type="text" class="items" name="users[' + i + '].FirstName" />' +
+    '
+    <input type="text" class="items" name="users[' + i + '].LastName" />';
+
+    $("#item-list").append(n);
+    });
+
+    });
 }
