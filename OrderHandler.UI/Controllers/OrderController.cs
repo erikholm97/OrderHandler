@@ -66,8 +66,14 @@ namespace OrderHandler.UI.Controllers
 
             OrderViewModel orderView = new OrderViewModel()
             {
-                //Todo assign OrderViewModel
+                CustomerName = order.CustomerName,
+                ArticleAmount = listOfOrders[0].ArticleAmount,
+                ArticleName = listOfOrders[0].Article.ArticleName,
+                ArticleNumber = listOfOrders[0].Article.ArticleNumber,
+                Price = listOfOrders[0].Article.Price
             };
+
+            //Todo display list of orders.
 
             return View(orderView);
         }
