@@ -50,6 +50,8 @@ namespace OrderHandler.UI.Controllers
 
             return RedirectToAction("Create", orderId);
 
+            //Todo se till att id kommer in i create
+
         }
 
         public IActionResult CreateOrderRow(int? id)
