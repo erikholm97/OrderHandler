@@ -64,15 +64,22 @@ namespace OrderHandler.UI.Controllers
             OrderRow orderRows = new OrderRow();
             var listOfOrders = orderRows.GetOrderRowsByOrderId(id);
 
-            OrderViewModel orderView = new OrderViewModel()
+            OrderViewModel1 orderView = new OrderViewModel1()
             {
+                Id = order.Id,
                 CustomerName = order.CustomerName,
-                ArticleAmount = listOfOrders[0].ArticleAmount,
-                ArticleName = listOfOrders[0].Article.ArticleName,
-                ArticleNumber = listOfOrders[0].Article.ArticleNumber,
-                Price = listOfOrders[0].Article.Price
             };
 
+            orderView.OrderRow = new List<OrderRowViewModel>();
+
+            orderView.OrderRow.Add(new OrderRowViewModel()
+            {
+                ArticleAmount = listOfOrders[0].ArticleAmount,
+                ArticleName = listOfOrders[0].Article.ArticleName,
+                ArticleNumber =listOfOrders[0].Article.ArticleNumber,
+                Price = listOfOrders[0].Article.Price
+            });
+          
             //Todo display list of orders.
 
             return View(orderView);

@@ -1,45 +1,52 @@
-﻿@model OrderHandler.UI.Models.OrderViewModel
+﻿@model OrderHandler.UI.Models.OrderViewModel1
 
 @{
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<style>
+    .order-section{
+        display: block;
+    }
+    table {
+        margin-top: 20px;
+    }
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
 
+    th, td {
+        padding: 10px;
+    }
+
+    th {
+        text-align: left;
+    }
+</style>
 <div>
-    <h4>OrderViewModel</h4>
-    <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CustomerName)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CustomerName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ArticleAmount)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ArticleAmount)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ArticleNumber)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ArticleNumber)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ArticleName)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ArticleName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Price)
-        </dd>
+        <div class="order-section">
+            <h4>Order: @Html.DisplayFor(model => model.Id)<b></b></h4>
+            <h4>Customer: @Html.DisplayFor(model => model.CustomerName)<b></b></h4>
+        </div>
+        <table style="width:100%">
+            <tr>
+                <th><b>Article Name</b></th>
+                <th><b>Cost: </b></th>
+                <th><b>Price</b></th>
+                <th><b>Article NR:</b></th>
+            </tr>
+            @foreach (var order in Model.OrderRow)
+            {
+                <tr>
+                    <td>@order.ArticleNumber</td>
+                    <td>@order.ArticleName</td>
+                    <td>@order.ArticleAmount</td>
+                    <td>@order.Price</td>
+                </tr>
+            }
+        </table>
     </dl>
 </div>
 <div>
