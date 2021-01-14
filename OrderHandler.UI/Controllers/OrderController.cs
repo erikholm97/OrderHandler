@@ -25,7 +25,7 @@ namespace OrderHandler.UI.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(OrderViewModel order)
+        public IActionResult Create(OrderViewModel1 order)
         {
             Order orderToCreate = new Order()
             {
@@ -34,24 +34,27 @@ namespace OrderHandler.UI.Controllers
 
             int orderId = orderToCreate.CreateOrder(orderToCreate);
 
-            Article articleToCreate = new Article()
+            foreach(var orderRow in order.OrderRow)
             {
-                ArticleName = order.ArticleName,
-                Price = order.Price,
-                ArticleNumber = order.ArticleNumber
-            };
+                Article articleToCreate = new Article()
+                {
+                    ArticleName = orderRow.ArticleName,
+                    Price = orderRow.Price,
+                    ArticleNumber = orderRow.ArticleNumber
+                };
 
-            int articleId = articleToCreate.CreateArticle(articleToCreate);
+                int articleId = articleToCreate.CreateArticle(articleToCreate);
 
-            OrderRow orderRowToCreate = new OrderRow()
-            {
-                OrderId = orderId,
-                RowNumber = 1,
-                ArticleAmount = order.ArticleAmount,
-                ArticleId = articleId
-            };
+                OrderRow orderRowToCreate = new OrderRow()
+                {
+                    ArticleId = articleId,
+                    OrderId = orderId,
+                    RowNumber = 1,
+                    ArticleAmount = orderRow.ArticleAmount,
+                };
 
-            int orderRowId = orderRowToCreate.CreateOrderRow(orderRowToCreate);
+                int orderRowId = orderRowToCreate.CreateOrderRow(orderRowToCreate);
+            }
 
             return RedirectToAction("Index");
 
