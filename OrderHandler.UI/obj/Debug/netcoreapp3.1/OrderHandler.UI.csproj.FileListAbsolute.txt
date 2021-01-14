@@ -314,3 +314,4 @@ C:\CGI\OrderHandler\OrderHandler.UI\obj\Debug\netcoreapp3.1\staticwebassets\Orde
 C:\CGI\OrderHandler\OrderHandler.UI\obj\Debug\netcoreapp3.1\OrderHandler.UI.dll
 C:\CGI\OrderHandler\OrderHandler.UI\obj\Debug\netcoreapp3.1\OrderHandler.UI.pdb
 C:\CGI\OrderHandler\OrderHandler.UI\obj\Debug\netcoreapp3.1\OrderHandler.UI.genruntimeconfig.cache
+C:\CGI\OrderHandler\OrderHandler.UI\obj\Debug\netcoreapp3.1\Razor\Views\Order\CreateOrderRow.cshtml.g.cs

@@ -1,0 +1,48 @@
+﻿@model OrderHandler.UI.Models.OrderRowViewModel
+
+@{
+    ViewData["Title"] = "CreateOrderRow";
+}
+
+<h1>Create OrderRow</h1>
+
+<h4>Order Row</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CreateOrderRow">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ArticleAmount" class="control-label"></label>
+                <input asp-for="ArticleAmount" class="form-control" />
+                <span asp-validation-for="ArticleAmount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ArticleNumber" class="control-label"></label>
+                <input asp-for="ArticleNumber" class="form-control" />
+                <span asp-validation-for="ArticleNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ArticleName" class="control-label"></label>
+                <input asp-for="ArticleName" class="form-control" />
+                <span asp-validation-for="ArticleName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Price" class="control-label"></label>
+                <input asp-for="Price" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

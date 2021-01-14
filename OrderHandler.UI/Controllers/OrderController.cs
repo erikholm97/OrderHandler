@@ -19,8 +19,22 @@ namespace OrderHandler.UI.Controllers
             return View(orders);
         }
 
-        public IActionResult Create()
+        public IActionResult Create(int? id)
         {
+            if (id.HasValue)
+            {
+                Order order = new Order();
+                order = order.GetOrderById(id.Value);
+
+                OrderViewModel1 orderView = new OrderViewModel1()
+                {
+                    Id = order.Id,
+                    CustomerName = order.CustomerName,
+                };
+
+                return View(order);
+            }
+
             return View();
         }
 
@@ -34,8 +48,18 @@ namespace OrderHandler.UI.Controllers
 
             int orderId = orderToCreate.CreateOrder(orderToCreate);
 
-            foreach(var orderRow in order.OrderRow)
-            {
+            return RedirectToAction("Create", orderId);
+
+        }
+
+        public IActionResult CreateOrderRow(int? id)
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult CreateOrderRow(int? orderId, OrderRowViewModel orderRow)
+        {
                 Article articleToCreate = new Article()
                 {
                     ArticleName = orderRow.ArticleName,
@@ -48,16 +72,14 @@ namespace OrderHandler.UI.Controllers
                 OrderRow orderRowToCreate = new OrderRow()
                 {
                     ArticleId = articleId,
-                    OrderId = orderId,
+                    OrderId = orderId.Value,
                     RowNumber = 1,
                     ArticleAmount = orderRow.ArticleAmount,
                 };
 
                 int orderRowId = orderRowToCreate.CreateOrderRow(orderRowToCreate);
-            }
-
-            return RedirectToAction("Index");
-
+          
+            return RedirectToAction("Create", orderId);
         }
 
         public IActionResult Details(int id)
