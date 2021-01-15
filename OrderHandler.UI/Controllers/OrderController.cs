@@ -51,7 +51,7 @@ namespace OrderHandler.UI.Controllers
                 bool orderWithSameIdExist = orderToCreate.GetOrderById(order.Id.Value) != null ? true : false;
                 return View();
             }
-          
+
             int orderId = orderToCreate.CreateOrder(orderToCreate);
 
             return View("CreateOrderRow", orderId);
@@ -70,32 +70,32 @@ namespace OrderHandler.UI.Controllers
             }
 
             return View();
-            
+
         }
 
         [HttpPost]
         public IActionResult CreateOrderRow(OrderRowViewModel orderRow)
         {
-                Article articleToCreate = new Article()
-                {
-                    ArticleName = orderRow.ArticleName,
-                    Price = orderRow.Price,
-                    ArticleNumber = orderRow.ArticleNumber
-                };
+            Article articleToCreate = new Article()
+            {
+                ArticleName = orderRow.ArticleName,
+                Price = orderRow.Price,
+                ArticleNumber = orderRow.ArticleNumber
+            };
 
-                int articleId = articleToCreate.CreateArticle(articleToCreate);
+            int articleId = articleToCreate.CreateArticle(articleToCreate);
 
-                OrderRow orderRowToCreate = new OrderRow()
-                {
-                    ArticleId = articleId,
-                    OrderId = orderRow.OrderId.Value,
-                    RowNumber = 1,
-                    ArticleAmount = orderRow.ArticleAmount,
-                };
+            OrderRow orderRowToCreate = new OrderRow()
+            {
+                ArticleId = articleId,
+                OrderId = orderRow.OrderId.Value,
+                RowNumber = 1,
+                ArticleAmount = orderRow.ArticleAmount,
+            };
 
-                int orderRowId = orderRowToCreate.CreateOrderRow(orderRowToCreate);
+            int orderRowId = orderRowToCreate.CreateOrderRow(orderRowToCreate);
 
-              
+
 
             return RedirectToAction("Create", orderRow.OrderId.Value);
         }
@@ -116,7 +116,7 @@ namespace OrderHandler.UI.Controllers
 
             orderView.OrderRow = new List<OrderRowViewModel>();
 
-            if(listOfOrders.Count > 0)
+            if (listOfOrders.Count > 0)
             {
                 foreach (var orderRow in listOfOrders)
                 {
@@ -129,7 +129,7 @@ namespace OrderHandler.UI.Controllers
                     });
                 }
             }
-          
+
             return View(orderView);
         }
 
