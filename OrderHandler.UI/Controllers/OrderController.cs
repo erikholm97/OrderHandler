@@ -46,21 +46,35 @@ namespace OrderHandler.UI.Controllers
                 CustomerName = order.CustomerName
             };
 
+            if (order.Id.HasValue)
+            {
+                bool orderWithSameIdExist = orderToCreate.GetOrderById(order.Id.Value) != null ? true : false;
+                return View();
+            }
+          
             int orderId = orderToCreate.CreateOrder(orderToCreate);
 
-            return RedirectToAction("Create", orderId);
+            return View("CreateOrderRow", orderId);
 
             //Todo se till att id kommer in i create
 
         }
 
-        public IActionResult CreateOrderRow(int? id)
+        public IActionResult CreateOrderRow(int id)
         {
+            OrderRowViewModel orderRow = new OrderRowViewModel();
+            if (id > 0)
+            {
+                orderRow.OrderId = id;
+                return View(orderRow);
+            }
+
             return View();
+            
         }
 
         [HttpPost]
-        public IActionResult CreateOrderRow(int? orderId, OrderRowViewModel orderRow)
+        public IActionResult CreateOrderRow(OrderRowViewModel orderRow)
         {
                 Article articleToCreate = new Article()
                 {
@@ -74,14 +88,16 @@ namespace OrderHandler.UI.Controllers
                 OrderRow orderRowToCreate = new OrderRow()
                 {
                     ArticleId = articleId,
-                    OrderId = orderId.Value,
+                    OrderId = orderRow.OrderId.Value,
                     RowNumber = 1,
                     ArticleAmount = orderRow.ArticleAmount,
                 };
 
                 int orderRowId = orderRowToCreate.CreateOrderRow(orderRowToCreate);
-          
-            return RedirectToAction("Create", orderId);
+
+              
+
+            return RedirectToAction("Create", orderRow.OrderId.Value);
         }
 
         public IActionResult Details(int id)
