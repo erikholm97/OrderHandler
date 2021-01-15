@@ -52,9 +52,9 @@ namespace OrderHandler.UI.Controllers
                 return View();
             }
 
-            int orderId = orderToCreate.CreateOrder(orderToCreate);
+            int id = orderToCreate.CreateOrder(orderToCreate);
 
-            return View("CreateOrderRow", orderId);
+            return RedirectToAction("CreateOrderRow", id);
 
             //Todo se till att id kommer in i create
 
