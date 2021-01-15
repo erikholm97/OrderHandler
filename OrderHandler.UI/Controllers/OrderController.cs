@@ -54,28 +54,24 @@ namespace OrderHandler.UI.Controllers
 
             int id = orderToCreate.CreateOrder(orderToCreate);
 
-            return RedirectToAction("CreateOrderRow", id);
+            return RedirectToAction("CreateOrderRow", new { orderId = id });
 
             //Todo se till att id kommer in i create
 
         }
 
-        public IActionResult CreateOrderRow(int id)
+        public IActionResult CreateOrderRow(int orderId)
         {
-            OrderRowViewModel orderRow = new OrderRowViewModel();
-            if (id > 0)
-            {
-                orderRow.OrderId = id;
-                return View(orderRow);
-            }
-
+            
             return View();
 
         }
 
         [HttpPost]
-        public IActionResult CreateOrderRow(OrderRowViewModel orderRow)
+        public IActionResult CreateOrderRow([FromRoute] int orderId, OrderRowViewModel orderRow)
         {
+            string value = RouteData.Values["orderId="].ToString();
+
             Article articleToCreate = new Article()
             {
                 ArticleName = orderRow.ArticleName,
@@ -88,7 +84,7 @@ namespace OrderHandler.UI.Controllers
             OrderRow orderRowToCreate = new OrderRow()
             {
                 ArticleId = articleId,
-                OrderId = orderRow.OrderId.Value,
+                OrderId = orderId,
                 RowNumber = 1,
                 ArticleAmount = orderRow.ArticleAmount,
             };
