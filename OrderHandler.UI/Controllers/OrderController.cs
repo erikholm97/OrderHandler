@@ -68,9 +68,9 @@ namespace OrderHandler.UI.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateOrderRow([FromRoute] int orderId, OrderRowViewModel orderRow)
+        public IActionResult CreateOrderRow([FromQuery(Name = "orderId")] string id, OrderRowViewModel orderRow)
         {
-            string value = RouteData.Values["orderId="].ToString();
+            //string value = RouteData.Values["orderId"]; Todo ta reda på varför query inte fungerar
 
             Article articleToCreate = new Article()
             {
@@ -84,14 +84,12 @@ namespace OrderHandler.UI.Controllers
             OrderRow orderRowToCreate = new OrderRow()
             {
                 ArticleId = articleId,
-                OrderId = orderId,
+                //OrderId = orderId,
                 RowNumber = 1,
                 ArticleAmount = orderRow.ArticleAmount,
             };
 
             int orderRowId = orderRowToCreate.CreateOrderRow(orderRowToCreate);
-
-
 
             return RedirectToAction("Create", orderRow.OrderId.Value);
         }
