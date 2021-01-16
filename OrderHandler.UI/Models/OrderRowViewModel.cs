@@ -21,6 +21,7 @@ namespace OrderHandler.UI.Models
         /// Article
         /// </summary>
         public int Price { get; set; }
-
+        
+        public int OrdersFound { get; set; }
     }
 }

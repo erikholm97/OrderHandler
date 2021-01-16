@@ -15,6 +15,9 @@
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.ArticleName)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.OrderId)
             </th>
             <th>
@@ -24,12 +27,16 @@
                 @Html.DisplayNameFor(model => model.ArticleNumber)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ArticleName)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Price)
             </th>
-            <th></th>
+            <th>
+                Orders Found:
+                @{
+                    var orderAmount = Model.ToList()[0].OrdersFound;
+
+                    @Html.DisplayFor(model => orderAmount)
+                }
+            </th>
         </tr>
     </thead>
     <tbody>

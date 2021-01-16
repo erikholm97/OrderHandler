@@ -16,6 +16,7 @@ namespace OrderHandler.UI.Controllers
         {
             OrderRow orderRow = new OrderRow();
             List<OrderRowViewModel> orderView = new List<OrderRowViewModel>();
+            int orderAmount = 0;
 
             var orderRows = orderRow.GetOrderRowsByArticle(articleName);
 
@@ -40,9 +41,11 @@ namespace OrderHandler.UI.Controllers
                     Price = orderRow1.Article.Price,
                     OrderId = orderRow1.OrderId
                 });
+
+                orderAmount++;
             }
 
-            //Todo GetOrderRows by article.
+            orderView[0].OrdersFound = orderAmount;
 
             return View(orderView.ToList());
         }
