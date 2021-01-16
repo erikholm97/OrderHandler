@@ -7,7 +7,7 @@ namespace OrderHandler.UI.Models
 {
     public class OrderRowViewModel
     {
-        public int? OrderId { get; set; }
+        public int OrderId { get; set; }
         public int ArticleAmount { get; set; }
         /// <summary>
         /// Article

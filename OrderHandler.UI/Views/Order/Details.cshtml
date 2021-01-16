@@ -51,5 +51,6 @@
 </div>
 <div>
     @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Add OrderRow", "CreateOrderRow", new { orderId = Model.Id }) |
     <a asp-action="Index">Back to List</a>
 </div>

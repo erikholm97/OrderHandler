@@ -17,6 +17,7 @@ namespace OrderHandler.Data
 
         [ForeignKey("Orders")]
         public int OrderId { get; set; }
+
         public Order Order { get; set; }
 
         [Required]
@@ -46,6 +47,27 @@ namespace OrderHandler.Data
                 var orderRows = db.OrderRows.Include(x => x.Article).Where(x => x.OrderId == id).ToList();
 
                 return orderRows;
+            }
+        }
+
+        public List<OrderRow> GetAllOrderRows()
+        {
+            using (ApplicationDbContext db = new ApplicationDbContext())
+            {
+                var orderRows = db.OrderRows.Include(x => x.Article).ToList();
+
+                return orderRows;
+            }
+        }
+
+        public List<OrderRow> GetOrderRowsByArticle(string articleName)
+        {
+            using (ApplicationDbContext db = new ApplicationDbContext())
+            {
+                var orderRowsByArticle = db.OrderRows.Include(x => x.Article).Where(x => x.Article.ArticleName == articleName
+                || x.Article.ArticleName.Contains(articleName)).ToList();
+
+                return orderRowsByArticle;
             }
         }
     }

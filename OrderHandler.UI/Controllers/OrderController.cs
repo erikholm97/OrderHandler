@@ -62,14 +62,17 @@ namespace OrderHandler.UI.Controllers
 
         public IActionResult CreateOrderRow(int orderId)
         {
-            
-            return View();
+            OrderRowViewModel orderRow = new OrderRowViewModel();
+            orderRow.OrderId = orderId;
+
+            return View(orderRow);
 
         }
 
         [HttpPost]
-        public IActionResult CreateOrderRow(int orderId, OrderRowViewModel orderRow)
+        public IActionResult CreateOrderRow(OrderRowViewModel orderRow)
         {
+
             Article articleToCreate = new Article()
             {
                 ArticleName = orderRow.ArticleName,
@@ -82,14 +85,14 @@ namespace OrderHandler.UI.Controllers
             OrderRow orderRowToCreate = new OrderRow()
             {
                 ArticleId = articleId,
-                //OrderId = orderId,
+                OrderId = orderRow.OrderId,
                 RowNumber = 1,
                 ArticleAmount = orderRow.ArticleAmount,
             };
 
             int orderRowId = orderRowToCreate.CreateOrderRow(orderRowToCreate);
 
-            return RedirectToAction("Create", orderRow.OrderId.Value);
+            return RedirectToAction("Details", new { id = orderRow.OrderId });
         }
 
         public IActionResult Details(int id)
@@ -117,7 +120,8 @@ namespace OrderHandler.UI.Controllers
                         ArticleAmount = orderRow.ArticleAmount,
                         ArticleName = orderRow.Article.ArticleName,
                         ArticleNumber = orderRow.Article.ArticleNumber,
-                        Price = orderRow.Article.Price
+                        Price = orderRow.Article.Price,
+                        OrderId = order.Id
                     });
                 }
             }
