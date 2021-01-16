@@ -37,6 +37,9 @@
                     @Html.DisplayFor(model => orderAmount)
                 }
             </th>
+            <td>
+                <b>Order Sum</b>
+            </td>
         </tr>
     </thead>
     <tbody>
@@ -56,6 +59,12 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderSum) $
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |

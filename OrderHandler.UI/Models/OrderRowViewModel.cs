@@ -23,5 +23,7 @@ namespace OrderHandler.UI.Models
         public int Price { get; set; }
         
         public int OrdersFound { get; set; }
+
+        public int OrderSum { get; set; }
     }
 }

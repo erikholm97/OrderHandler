@@ -39,7 +39,8 @@ namespace OrderHandler.UI.Controllers
                     ArticleName = orderRow1.Article.ArticleName,
                     ArticleNumber = orderRow1.Article.ArticleNumber,
                     Price = orderRow1.Article.Price,
-                    OrderId = orderRow1.OrderId
+                    OrderId = orderRow1.OrderId,
+                    OrderSum = (orderRow1.Article.Price * orderRow1.ArticleAmount)
                 });
 
                 orderAmount++;
