@@ -9,7 +9,7 @@ using OrderHandler.UI.Models;
 
 namespace OrderHandler.UI.Controllers
 {
-    public class OrderRowController : Controller
+    public class ArticleController : Controller
     {
         // GET: OrderRowController
         public async Task<IActionResult> Index(string articleName)
@@ -27,25 +27,30 @@ namespace OrderHandler.UI.Controllers
             if(orderRows is null || orderRows.Count == 0)
             {
                 orderRows = orderRow.GetAllOrderRows();
+              
+            }
 
-                
-                    foreach (var orderRow1 in orderRows)
-                    {
-                        orderView.Add(new OrderRowViewModel()
-                        {
-                            ArticleAmount = orderRow1.ArticleAmount,
-                            ArticleName = orderRow1.Article.ArticleName,
-                            ArticleNumber = orderRow1.Article.ArticleNumber,
-                            Price = orderRow1.Article.Price,
-                            OrderId = orderRow1.OrderId
-                        });
-                    }
-                
+            foreach (var orderRow1 in orderRows)
+            {
+                orderView.Add(new OrderRowViewModel()
+                {
+                    ArticleAmount = orderRow1.ArticleAmount,
+                    ArticleName = orderRow1.Article.ArticleName,
+                    ArticleNumber = orderRow1.Article.ArticleNumber,
+                    Price = orderRow1.Article.Price,
+                    OrderId = orderRow1.OrderId
+                });
             }
 
             //Todo GetOrderRows by article.
 
-            return View(orderView);
+            return View(orderView.ToList());
+        }
+
+        [HttpPost]
+        public IActionResult CreateSearchString(string searchString)
+        {
+            return RedirectToAction("Index", new { articleName = searchString });
         }
 
         // GET: OrderRowController/Details/5
