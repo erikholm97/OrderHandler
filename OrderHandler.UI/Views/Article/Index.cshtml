@@ -1,10 +1,11 @@
-﻿@model IEnumerable<OrderHandler.UI.Models.OrderRowViewModel>
+﻿@model OrderHandler.UI.Models.ArticleViewModel
 
 @{
     ViewData["Title"] = "Index";
 }
 
 <h1>Articles</h1>
+
 <form asp-controller="Article" asp-action="CreateSearchString">
     <p>
         Title: <input type="text" name="SearchString" />
@@ -15,36 +16,35 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.ArticleName)
+                @Html.DisplayNameFor(model => model.OrderRow[0].ArticleName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.OrderId)
+                @Html.DisplayNameFor(model => model.OrderRow[0].OrderId)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ArticleAmount)
+                @Html.DisplayNameFor(model => model.OrderRow[0].ArticleAmount)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ArticleNumber)
+                @Html.DisplayNameFor(model => model.OrderRow[0].ArticleNumber)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Price)
+                @Html.DisplayNameFor(model => model.OrderRow[0].Price)
             </th>
             <th>
-                Orders Found:
-                @{
-                    var orderAmount = Model.ToList()[0].OrdersFound;
-
-                    @Html.DisplayFor(model => orderAmount)
-                }
-            </th>
-            <td>
                 <b>Order Sum</b>
-            </td>
+            </th>
+            <th>
+                OrderRows Found:  @Html.DisplayFor(model => model.OrderRowsFound)
+            </th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+            @foreach (var item in Model.OrderRow)
+            {
         <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ArticleName)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.OrderId)
             </td>
@@ -55,23 +55,13 @@
                 @Html.DisplayFor(modelItem => item.ArticleNumber)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ArticleName)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.Price)
             </td>
             <td>
-                
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.OrderSum) $
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                @Html.DisplayFor(modelItem => item.OrderSum) SEK
             </td>
         </tr>
-}
+            }
+
     </tbody>
 </table>

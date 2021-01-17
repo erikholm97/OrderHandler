@@ -5,12 +5,10 @@ using System.Threading.Tasks;
 
 namespace OrderHandler.UI.Models
 {
-    public class OrderViewModel1
+    public class ArticleViewModel
     {
-        public int? Id { get; set; }
-        public string CustomerName { get; set; }
+        public int OrderRowsFound { get; set; }
 
         public List<OrderRowViewModel> OrderRow { get; set; }
-
     }
 }

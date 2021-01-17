@@ -32,25 +32,25 @@
         </div>
         <table style="width:100%">
             <tr>
-                <th><b>Article Name</b></th>
-                <th><b>Cost: </b></th>
-                <th><b>Price</b></th>
-                <th><b>Article NR:</b></th>
+                <th><b>Article Namn</b></th>
+                <th><b>Pris</b></th>
+                <th><b>Arikel NR:</b></th>
+                <th><b>Antal:</b></th>
             </tr>
             @foreach (var order in Model.OrderRow)
             {
-                <tr>
-                    <td>@order.ArticleNumber</td>
-                    <td>@order.ArticleName</td>
-                    <td>@order.ArticleAmount</td>
-                    <td>@order.Price</td>
-                </tr>
+        <tr>
+            <td>@order.ArticleName</td>
+            <td>@order.Price SEK</td>
+            <td>@order.ArticleNumber</td>
+            <td>@order.ArticleAmount</td>
+        </tr>
             }
         </table>
     </dl>
 </div>
 <div>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    @Html.ActionLink("Add OrderRow", "CreateOrderRow", new { orderId = Model.Id }) |
-    <a asp-action="Index">Back to List</a>
+    @Html.ActionLink("Ändra", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Lägg till orderrad", "CreateOrderRow", new { orderId = Model.Id }) |
+    <a asp-action="Index">Tillbaka</a>
 </div>

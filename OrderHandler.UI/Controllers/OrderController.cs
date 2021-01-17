@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using OrderHandler.Data;
+using OrderHandler.UI.Helpers;
 using OrderHandler.UI.Models;
 
 namespace OrderHandler.UI.Controllers
@@ -56,8 +57,6 @@ namespace OrderHandler.UI.Controllers
 
             return RedirectToAction("CreateOrderRow", new { orderId = id });
 
-            //Todo se till att id kommer in i create
-
         }
 
         public IActionResult CreateOrderRow(int orderId)
@@ -86,7 +85,7 @@ namespace OrderHandler.UI.Controllers
             {
                 ArticleId = articleId,
                 OrderId = orderRow.OrderId,
-                RowNumber = 1,
+                RowNumber = OrderHelper.GetOrderRowNumber(orderRow.OrderId),
                 ArticleAmount = orderRow.ArticleAmount,
             };
 
@@ -139,20 +138,22 @@ namespace OrderHandler.UI.Controllers
         public IActionResult Delete(int id)
         {
             Order order = new Order();
-
+            
             order = order.GetOrderById(id);
 
-            order.DeleteOrder(order);
-
-            return RedirectToAction("Index");
+            return View(order);
         }
 
         [HttpPost]
         public IActionResult Delete(Order order)
         {
+            OrderRow orderRow = new OrderRow();
+
+            orderRow.DeleteOrderRowsByOrderId(order.Id);
+
             order.DeleteOrder(order);
 
-            return View(order);
+            return View("Index");
         }
 
         [HttpPost]

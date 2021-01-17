@@ -21,3 +21,4 @@ C:\CGI\OrderHandler\OrderHandler\obj\Debug\netcoreapp3.1\OrderHandler.Data.cspro
 C:\CGI\OrderHandler\OrderHandler\obj\Debug\netcoreapp3.1\OrderHandler.Data.dll
 C:\CGI\OrderHandler\OrderHandler\obj\Debug\netcoreapp3.1\OrderHandler.Data.pdb
 C:\CGI\OrderHandler\OrderHandler\obj\Debug\netcoreapp3.1\OrderHandler.Data.genruntimeconfig.cache
+C:\CGI\OrderHandler\OrderHandler\obj\Debug\netcoreapp3.1\OrderHandler.Data.csprojAssemblyReference.cache

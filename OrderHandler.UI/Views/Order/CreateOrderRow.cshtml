@@ -9,28 +9,28 @@
     <div class="col-md-4">
         <form asp-action="CreateOrderRow">
             <div class="form-group">
-                <label asp-for="OrderId" class="control-label"></label>
+                <label asp-for="OrderId" class="control-label">OrderId</label>
                 <input asp-for="OrderId" class="form-control" />
                 <span asp-validation-for="OrderId" class="text-danger"></span>
             </div>
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="ArticleAmount" class="control-label"></label>
+                <label class="control-label">Antal artiklar</label>
                 <input asp-for="ArticleAmount" class="form-control" />
                 <span asp-validation-for="ArticleAmount" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ArticleNumber" class="control-label"></label>
+                <label asp-for="ArticleNumber" class="control-label">Artikel NR</label>
                 <input asp-for="ArticleNumber" class="form-control" />
                 <span asp-validation-for="ArticleNumber" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ArticleName" class="control-label"></label>
+                <label asp-for="ArticleName" class="control-label">Artikel namn</label>
                 <input asp-for="ArticleName" class="form-control" />
                 <span asp-validation-for="ArticleName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Price" class="control-label"></label>
+                <label asp-for="Price" class="control-label">Pris</label>
                 <input asp-for="Price" class="form-control" />
                 <span asp-validation-for="Price" class="text-danger"></span>
             </div>

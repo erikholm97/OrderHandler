@@ -14,7 +14,7 @@ namespace OrderHandler.Data
         public int Id { get; set; }
         [Required]
         public int RowNumber { get; set; }
-
+        [Required]
         [ForeignKey("Orders")]
         public int OrderId { get; set; }
 
@@ -60,7 +60,7 @@ namespace OrderHandler.Data
             }
         }
 
-        public List<OrderRow> GetOrderRowsByArticle(string articleName)
+        public List<OrderRow> GetOrderRowsByArticleName(string articleName)
         {
             using (ApplicationDbContext db = new ApplicationDbContext())
             {
@@ -68,6 +68,22 @@ namespace OrderHandler.Data
                 || x.Article.ArticleName.Contains(articleName)).ToList();
 
                 return orderRowsByArticle;
+            }
+        }
+
+        public void DeleteOrderRowsByOrderId(int orderId)
+        {
+            using(ApplicationDbContext db = new ApplicationDbContext())
+            {
+                var orderRows = db.OrderRows.Where(x => x.OrderId == orderId).ToList();
+
+                if(orderRows.Count == 0)
+                {
+                    return;
+                }
+
+                db.RemoveRange(orderRows);
+                db.SaveChanges();
             }
         }
     }

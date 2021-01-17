@@ -14,116 +14,45 @@ namespace OrderHandler.UI.Controllers
         // GET: OrderRowController
         public async Task<IActionResult> Index(string articleName)
         {
-            OrderRow orderRow = new OrderRow();
-            List<OrderRowViewModel> orderView = new List<OrderRowViewModel>();
-            int orderAmount = 0;
+            OrderRow or = new OrderRow();
+            ArticleViewModel articlesWithOrderRows = new ArticleViewModel();
+            articlesWithOrderRows.OrderRowsFound = 0;
+            articlesWithOrderRows.OrderRow = new List<OrderRowViewModel>();
 
-            var orderRows = orderRow.GetOrderRowsByArticle(articleName);
-
-            if (!String.IsNullOrEmpty(articleName))
+            try
             {
-                orderRows = orderRow.GetOrderRowsByArticle(articleName);
-            }
+                articlesWithOrderRows.OrderRowsFound = 0;
+                articlesWithOrderRows.OrderRow = new List<OrderRowViewModel>();
 
-            if(orderRows is null || orderRows.Count == 0)
-            {
-                orderRows = orderRow.GetAllOrderRows();
-              
-            }
+                var orderRows = or.GetOrderRowsByArticleName(articleName);
 
-            foreach (var orderRow1 in orderRows)
-            {
-                orderView.Add(new OrderRowViewModel()
+                foreach (var orderRow in orderRows)
                 {
-                    ArticleAmount = orderRow1.ArticleAmount,
-                    ArticleName = orderRow1.Article.ArticleName,
-                    ArticleNumber = orderRow1.Article.ArticleNumber,
-                    Price = orderRow1.Article.Price,
-                    OrderId = orderRow1.OrderId,
-                    OrderSum = (orderRow1.Article.Price * orderRow1.ArticleAmount)
-                });
+                    articlesWithOrderRows.OrderRow.Add(new OrderRowViewModel()
+                    {
+                        ArticleAmount = orderRow.ArticleAmount,
+                        ArticleName = orderRow.Article.ArticleName,
+                        ArticleNumber = orderRow.Article.ArticleNumber,
+                        Price = orderRow.Article.Price,
+                        OrderId = orderRow.OrderId,
+                        OrderSum = (orderRow.Article.Price * orderRow.ArticleAmount)
+                    });
 
-                orderAmount++;
+                    articlesWithOrderRows.OrderRowsFound++;
+                }
+            }
+            catch (Exception ex)
+            {
+                return View("Error", ex.Message);
             }
 
-            orderView[0].OrdersFound = orderAmount;
-
-            return View(orderView.ToList());
+            return View(articlesWithOrderRows);
         }
 
         [HttpPost]
         public IActionResult CreateSearchString(string searchString)
         {
             return RedirectToAction("Index", new { articleName = searchString });
-        }
-
-        // GET: OrderRowController/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: OrderRowController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: OrderRowController/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: OrderRowController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: OrderRowController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: OrderRowController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: OrderRowController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
         }
     }
 }
