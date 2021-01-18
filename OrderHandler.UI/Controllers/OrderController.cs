@@ -71,14 +71,30 @@ namespace OrderHandler.UI.Controllers
         {
             try
             {
-                Article articleToCreate = new Article()
-                {
-                    ArticleName = orderRow.ArticleName,
-                    Price = orderRow.Price,
-                    ArticleNumber = orderRow.ArticleNumber
-                };
+                Article articleToCreate = new Article();
+                int articleId = 0;
 
-                int articleId = articleToCreate.CreateArticle(articleToCreate);
+
+                articleToCreate = articleToCreate.GetIfArticleByNameExist(orderRow.ArticleName);
+
+                //Article exist in database
+                if (articleToCreate != null)
+                {
+                    articleId = articleToCreate.Id;
+                }              
+                
+                //Create new Article
+                if(articleToCreate is null)
+                {
+                    articleToCreate = new Article()
+                    {
+                        ArticleName = orderRow.ArticleName,
+                        Price = orderRow.Price,
+                        ArticleNumber = orderRow.ArticleNumber
+                    };
+
+                    articleId = articleToCreate.CreateArticle(articleToCreate);
+                }
 
                 OrderRow orderRowToCreate = new OrderRow()
                 {
