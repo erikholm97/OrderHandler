@@ -81,6 +81,9 @@ namespace OrderHandler.UI.Controllers
                 if (articleToCreate != null)
                 {
                     articleId = articleToCreate.Id;
+
+                    //Overides users choosen article number since the item exists in the db.
+                    orderRow.ArticleNumber = articleToCreate.ArticleNumber;
                 }              
                 
                 //Create new Article
