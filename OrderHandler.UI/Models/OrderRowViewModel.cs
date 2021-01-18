@@ -13,7 +13,7 @@ namespace OrderHandler.UI.Models
         [Required(ErrorMessage = "Du måste ange antalet ordrar.")]
         public int ArticleAmount { get; set; }
         public int ArticleNumber { get; set; }
-        [Required(ErrorMessage = "Du måste ange ett namn för angivna artikeln.")]
+        [Required(ErrorMessage = "Du måste ange ett namn för angivna artikeln. En orderrad måste ha en artikel.")]
         public string ArticleName { get; set; }
         [Required(ErrorMessage = "Du måste ange ett pris för den angivna artikeln.")]
         public int Price { get; set; }
