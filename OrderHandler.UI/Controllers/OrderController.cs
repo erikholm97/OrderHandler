@@ -20,28 +20,9 @@ namespace OrderHandler.UI.Controllers
             return View(orders);
         }
 
-        public IActionResult Create(int? id)
+        public IActionResult Create()
         {
-            Order order = new Order();
-            try
-            {
-                if (id.HasValue)
-                {
-                    order = order.GetOrderById(id.Value);
-
-                    OrderViewModel1 orderView = new OrderViewModel1()
-                    {
-                        Id = order.Id,
-                        CustomerName = order.CustomerName,
-                    };
-                }
-            }
-            catch (Exception ex)
-            {
-                return View("Error", ex.Message);
-            }
-
-            return View(order);
+            return View();
         }
 
         [HttpPost]
@@ -131,14 +112,20 @@ namespace OrderHandler.UI.Controllers
             {
                 foreach (var orderRow in listOfOrders)
                 {
+                    int orderRowNr = 1;
+
                     orderView.OrderRow.Add(new OrderRowViewModel()
                     {
                         ArticleAmount = orderRow.ArticleAmount,
                         ArticleName = orderRow.Article.ArticleName,
                         ArticleNumber = orderRow.Article.ArticleNumber,
                         Price = orderRow.Article.Price,
-                        OrderId = order.Id
+                        OrderId = order.Id,
+                        OrderSum = OrderHelper.GetOrderSum(orderRow.Article.Price, orderRow.ArticleAmount),
+                        OrderRowNr = orderRowNr
                     });
+
+                    orderRowNr++;
                 }
             }
 

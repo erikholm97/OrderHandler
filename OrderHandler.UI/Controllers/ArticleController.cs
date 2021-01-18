@@ -33,7 +33,8 @@ namespace OrderHandler.UI.Controllers
                         ArticleNumber = orderRow.Article.ArticleNumber,
                         Price = orderRow.Article.Price,
                         OrderId = orderRow.OrderId,
-                        OrderSum = OrderHelper.GetOrderSum(orderRow.Article.Price, orderRow.ArticleAmount)
+                        OrderSum = OrderHelper.GetOrderSum(orderRow.Article.Price, orderRow.ArticleAmount),
+                        CustomerName = orderRow.Order.CustomerName
                     });
 
                     articlesWithOrderRows.OrderRowSum += OrderHelper.GetOrderSum(orderRow.Article.Price, orderRow.ArticleAmount);

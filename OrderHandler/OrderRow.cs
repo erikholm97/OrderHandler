@@ -64,7 +64,7 @@ namespace OrderHandler.Data
         {
             using (ApplicationDbContext db = new ApplicationDbContext())
             {
-                var orderRowsByArticle = db.OrderRows.Include(x => x.Article).Where(x => x.Article.ArticleName == articleName
+                var orderRowsByArticle = db.OrderRows.Include(x => x.Article).Include(x => x.Order).Where(x => x.Article.ArticleName == articleName
                 || x.Article.ArticleName.Contains(articleName)).ToList();
 
                 return orderRowsByArticle;

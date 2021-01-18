@@ -19,5 +19,9 @@ namespace OrderHandler.UI.Models
         public int Price { get; set; }
         public long OrderSum { get; set; }
 
+        public int OrderRowNr { get; set; }
+
+        public string CustomerName { get; set; }
+
     }
 }
