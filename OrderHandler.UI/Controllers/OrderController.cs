@@ -53,11 +53,17 @@ namespace OrderHandler.UI.Controllers
 
         public IActionResult CreateOrderRow(int orderId)
         {
-            OrderRowViewModel orderRow = new OrderRowViewModel();
-            orderRow.OrderId = orderId;
+            try
+            {
+                OrderRowViewModel orderRow = new OrderRowViewModel();
+                orderRow.OrderId = orderId;
 
-            return View(orderRow);
-
+                return View(orderRow);
+            }
+            catch(Exception ex)
+            {
+                return View("Error", ex.Message);
+            }
         }
 
         [HttpPost]
@@ -94,58 +100,80 @@ namespace OrderHandler.UI.Controllers
 
         public IActionResult Details(int id)
         {
-            Order order = new Order();
-            order = order.GetOrderById(id);
-
-            OrderRow orderRows = new OrderRow();
-            var listOfOrders = orderRows.GetOrderRowsByOrderId(id);
-
-            OrderViewModel1 orderView = new OrderViewModel1()
+            try
             {
-                Id = order.Id,
-                CustomerName = order.CustomerName,
-            };
+                Order order = new Order();
+                order = order.GetOrderById(id);
 
-            orderView.OrderRow = new List<OrderRowViewModel>();
+                OrderRow orderRows = new OrderRow();
+                var listOfOrders = orderRows.GetOrderRowsByOrderId(id);
 
-            if (listOfOrders.Count > 0)
-            {
-                foreach (var orderRow in listOfOrders)
+                OrderViewModel1 orderView = new OrderViewModel1()
+                {
+                    Id = order.Id,
+                    CustomerName = order.CustomerName,
+                };
+
+                orderView.OrderRow = new List<OrderRowViewModel>();
+
+                if (listOfOrders.Count > 0)
                 {
                     int orderRowNr = 1;
 
-                    orderView.OrderRow.Add(new OrderRowViewModel()
+                    foreach (var orderRow in listOfOrders)
                     {
-                        ArticleAmount = orderRow.ArticleAmount,
-                        ArticleName = orderRow.Article.ArticleName,
-                        ArticleNumber = orderRow.Article.ArticleNumber,
-                        Price = orderRow.Article.Price,
-                        OrderId = order.Id,
-                        OrderSum = OrderHelper.GetOrderSum(orderRow.Article.Price, orderRow.ArticleAmount),
-                        OrderRowNr = orderRowNr
-                    });
+                        orderView.OrderRow.Add(new OrderRowViewModel()
+                        {
+                            ArticleAmount = orderRow.ArticleAmount,
+                            ArticleName = orderRow.Article.ArticleName,
+                            ArticleNumber = orderRow.Article.ArticleNumber,
+                            Price = orderRow.Article.Price,
+                            OrderId = order.Id,
+                            OrderSum = OrderHelper.GetOrderSum(orderRow.Article.Price, orderRow.ArticleAmount),
+                            OrderRowNr = orderRowNr
+                        });
 
-                    orderRowNr++;
+                        orderRowNr++;
+                    }
                 }
+                return View(orderView);
+
+            }
+            catch (Exception ex)
+            {
+                return View("Error", ex.Message);
             }
 
-            return View(orderView);
         }
 
         public IActionResult Edit(int id)
         {
-            Order order = new Order();
+            try
+            {
+                Order order = new Order();
 
-            return View(order.GetOrderById(id));
+                return View(order.GetOrderById(id));
+            }
+            catch (Exception ex)
+            {
+                return View("Error", ex.Message);
+            }
         }
 
         public IActionResult Delete(int id)
         {
-            Order order = new Order();
-            
-            order = order.GetOrderById(id);
+            try
+            {
+                Order order = new Order();
 
-            return View(order);
+                order = order.GetOrderById(id);
+
+                return View(order);
+            }
+            catch (Exception ex)
+            {
+                return View("Error", ex.Message);
+            }
         }
 
         [HttpPost]
