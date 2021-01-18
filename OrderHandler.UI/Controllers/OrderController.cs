@@ -22,41 +22,52 @@ namespace OrderHandler.UI.Controllers
 
         public IActionResult Create(int? id)
         {
-            if (id.HasValue)
+            Order order = new Order();
+            try
             {
-                Order order = new Order();
-                order = order.GetOrderById(id.Value);
-
-                OrderViewModel1 orderView = new OrderViewModel1()
+                if (id.HasValue)
                 {
-                    Id = order.Id,
-                    CustomerName = order.CustomerName,
-                };
+                    order = order.GetOrderById(id.Value);
 
-                return View(order);
+                    OrderViewModel1 orderView = new OrderViewModel1()
+                    {
+                        Id = order.Id,
+                        CustomerName = order.CustomerName,
+                    };
+                }
+            }
+            catch (Exception ex)
+            {
+                return View("Error", ex.Message);
             }
 
-            return View();
+            return View(order);
         }
 
         [HttpPost]
         public IActionResult Create(OrderViewModel1 order)
         {
-            Order orderToCreate = new Order()
+            try
             {
-                CustomerName = order.CustomerName
-            };
+                Order orderToCreate = new Order()
+                {
+                    CustomerName = order.CustomerName
+                };
 
-            if (order.Id.HasValue)
+                if (order.Id.HasValue)
+                {
+                    bool orderWithSameIdExist = orderToCreate.GetOrderById(order.Id.Value) != null ? true : false;
+                    return View();
+                }
+
+                int id = orderToCreate.CreateOrder(orderToCreate);
+
+                return RedirectToAction("CreateOrderRow", new { orderId = id });
+            } 
+            catch(Exception ex)
             {
-                bool orderWithSameIdExist = orderToCreate.GetOrderById(order.Id.Value) != null ? true : false;
-                return View();
+                return View("Error", ex.Message);
             }
-
-            int id = orderToCreate.CreateOrder(orderToCreate);
-
-            return RedirectToAction("CreateOrderRow", new { orderId = id });
-
         }
 
         public IActionResult CreateOrderRow(int orderId)
@@ -71,27 +82,33 @@ namespace OrderHandler.UI.Controllers
         [HttpPost]
         public IActionResult CreateOrderRow(OrderRowViewModel orderRow)
         {
-
-            Article articleToCreate = new Article()
+            try
             {
-                ArticleName = orderRow.ArticleName,
-                Price = orderRow.Price,
-                ArticleNumber = orderRow.ArticleNumber
-            };
+                Article articleToCreate = new Article()
+                {
+                    ArticleName = orderRow.ArticleName,
+                    Price = orderRow.Price,
+                    ArticleNumber = orderRow.ArticleNumber
+                };
 
-            int articleId = articleToCreate.CreateArticle(articleToCreate);
+                int articleId = articleToCreate.CreateArticle(articleToCreate);
 
-            OrderRow orderRowToCreate = new OrderRow()
+                OrderRow orderRowToCreate = new OrderRow()
+                {
+                    ArticleId = articleId,
+                    OrderId = orderRow.OrderId,
+                    RowNumber = OrderHelper.GetOrderRowNumber(orderRow.OrderId),
+                    ArticleAmount = orderRow.ArticleAmount,
+                };
+
+                int orderRowId = orderRowToCreate.CreateOrderRow(orderRowToCreate);
+
+                return RedirectToAction("Details", new { id = orderRow.OrderId });
+            }
+            catch(Exception ex)
             {
-                ArticleId = articleId,
-                OrderId = orderRow.OrderId,
-                RowNumber = OrderHelper.GetOrderRowNumber(orderRow.OrderId),
-                ArticleAmount = orderRow.ArticleAmount,
-            };
-
-            int orderRowId = orderRowToCreate.CreateOrderRow(orderRowToCreate);
-
-            return RedirectToAction("Details", new { id = orderRow.OrderId });
+                return View("Error", ex.Message);
+            }
         }
 
         public IActionResult Details(int id)
@@ -147,21 +164,36 @@ namespace OrderHandler.UI.Controllers
         [HttpPost]
         public IActionResult Delete(Order order)
         {
-            OrderRow orderRow = new OrderRow();
+            try
+            {
+                OrderRow orderRow = new OrderRow();
 
-            orderRow.DeleteOrderRowsByOrderId(order.Id);
+                orderRow.DeleteOrderRowsByOrderId(order.Id);
 
-            order.DeleteOrder(order);
+                order.DeleteOrder(order);
 
-            return View("Index");
+                return RedirectToAction("Index");
+            }
+            catch(Exception ex)
+            {
+                return View("Error", ex.Message);
+            }
+           
         }
 
         [HttpPost]
         public IActionResult Edit(Order order)
         {
-            order.UpdateOrder(order);
+            try
+            {
+                order.UpdateOrder(order);
 
-            return RedirectToAction("Index");
+                return RedirectToAction("Index");
+            }
+            catch(Exception ex)
+            {
+                return View("Error", ex.Message);
+            }
         }
     }
 }

@@ -16,25 +16,28 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.OrderRow[0].ArticleName)
+                Artikel namn
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.OrderRow[0].OrderId)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.OrderRow[0].ArticleAmount)
+                Antal artiklar
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.OrderRow[0].ArticleNumber)
+                Artikel NR
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.OrderRow[0].Price)
+                ST Pris
             </th>
             <th>
                 <b>Order Sum</b>
             </th>
             <th>
-                OrderRows Found:  @Html.DisplayFor(model => model.OrderRowsFound)
+                Orderrader hittade:  @Html.DisplayFor(model => model.OrderRowsFound)
+            </th>
+            <th>
+                Summa av värde för orderader:  @Html.DisplayFor(model => model.OrderRowSum)
             </th>
         </tr>
     </thead>
@@ -46,7 +49,7 @@
                 @Html.DisplayFor(modelItem => item.ArticleName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.OrderId)
+                <b>@Html.DisplayFor(modelItem => item.OrderId)</b>
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ArticleAmount)
@@ -60,6 +63,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.OrderSum) SEK
             </td>
+            <td></td>
         </tr>
             }
 

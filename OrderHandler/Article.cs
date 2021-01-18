@@ -11,11 +11,11 @@ namespace OrderHandler.Data
         [Required]
         public int Id { get; set; }
         [Required]
-        public int ArticleNumber { get; set; }
-        [Required]
-        public string ArticleName { get; set; }
-        [Required]
-        public int Price { get; set; }
+            public int ArticleNumber { get; set; }
+            [Required]
+            public string ArticleName { get; set; }
+            [Required]
+            public int Price { get; set; }
 
         public int CreateArticle(Article articleToCreate)
         {

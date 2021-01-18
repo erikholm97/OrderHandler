@@ -10,5 +10,7 @@ namespace OrderHandler.UI.Models
         public int OrderRowsFound { get; set; }
 
         public List<OrderRowViewModel> OrderRow { get; set; }
+
+        public long OrderRowSum { get; set; }
     }
 }

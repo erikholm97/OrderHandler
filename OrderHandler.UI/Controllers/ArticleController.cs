@@ -6,13 +6,14 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using OrderHandler.Data;
 using OrderHandler.UI.Models;
+using OrderHandler.UI.Helpers;
 
 namespace OrderHandler.UI.Controllers
 {
     public class ArticleController : Controller
     {
         // GET: OrderRowController
-        public async Task<IActionResult> Index(string articleName)
+        public IActionResult Index(string articleName)
         {
             OrderRow or = new OrderRow();
             ArticleViewModel articlesWithOrderRows = new ArticleViewModel();
@@ -21,9 +22,6 @@ namespace OrderHandler.UI.Controllers
 
             try
             {
-                articlesWithOrderRows.OrderRowsFound = 0;
-                articlesWithOrderRows.OrderRow = new List<OrderRowViewModel>();
-
                 var orderRows = or.GetOrderRowsByArticleName(articleName);
 
                 foreach (var orderRow in orderRows)
@@ -35,9 +33,10 @@ namespace OrderHandler.UI.Controllers
                         ArticleNumber = orderRow.Article.ArticleNumber,
                         Price = orderRow.Article.Price,
                         OrderId = orderRow.OrderId,
-                        OrderSum = (orderRow.Article.Price * orderRow.ArticleAmount)
+                        OrderSum = OrderHelper.GetOrderSum(orderRow.Article.Price, orderRow.ArticleAmount)
                     });
 
+                    articlesWithOrderRows.OrderRowSum += OrderHelper.GetOrderSum(orderRow.Article.Price, orderRow.ArticleAmount);
                     articlesWithOrderRows.OrderRowsFound++;
                 }
             }
