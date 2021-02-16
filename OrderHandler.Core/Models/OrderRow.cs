@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
 
-namespace OrderHandler.Data
+namespace OrderHandler.Core.Models
 {
     public class OrderRow
     {

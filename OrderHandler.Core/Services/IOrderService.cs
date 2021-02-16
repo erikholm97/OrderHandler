@@ -1,19 +1,17 @@
-﻿using OrderHandler.Data;
+﻿using OrderHandler.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OrderHandler.Core
+namespace OrderHandler.Services
 {
-    public interface IOrderRepository
+    interface IOrderService
     {
         Task<List<Order>> GetAllOrders();
         Task<Order> GetOrderById(int id);
-        Task <int> CreateOrder(Order orderToCreate);
-
+        Task<int> CreateOrder(Order orderToCreate);
         Task DeleteOrder(Order order);
-
         Task UpdateOrder(Order order);
     }
 }

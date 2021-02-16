@@ -1,12 +1,12 @@
-﻿using OrderHandler.Data;
+﻿using OrderHandler.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OrderHandler.Core
+namespace OrderHandler.Core.Repositories
 {
-    public interface IOrderRowRepository
+    public interface IOrderRowRepository : IRepository<OrderRow>
     {
         Task<int> CreateOrderRow(OrderRow orderRowToCreate);
 

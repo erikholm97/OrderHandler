@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 
-namespace OrderHandler.Data
+namespace OrderHandler.Core.Models
 {
     public class Article
     {

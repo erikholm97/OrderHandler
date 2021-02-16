@@ -1,6 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using OrderHandler.Core.Repositories;
+using System;
 using System.Threading.Tasks;
 
 namespace OrderHandler.Core
@@ -9,7 +8,6 @@ namespace OrderHandler.Core
     {
         IOrderRepository Orders { get; }
         IOrderRowRepository Artists { get; }
-
         IArticleRepository Articles { get; }
         Task<int> CommitAsync();
     }

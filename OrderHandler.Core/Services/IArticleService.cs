@@ -1,16 +1,15 @@
-﻿using OrderHandler.Data;
+﻿using OrderHandler.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OrderHandler.Core
+namespace OrderHandler.Services
 {
-    public interface IArticleRepository
+    interface IArticleService
     {
         Task<Article> CreateArticle(Article articleToCreate);
 
         Task<Article> GetIfArticleByNameExist(string articleName);
-        
     }
 }
