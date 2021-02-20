@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using OrderHandler.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;

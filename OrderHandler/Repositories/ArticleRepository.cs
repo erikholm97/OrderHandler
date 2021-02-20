@@ -7,7 +7,7 @@ using OrderHandler.Core.Repositories;
 
 namespace OrderHandler.Data.Repositories
 {
-    public class ArticleRepository : Repository<Article>
+    public class ArticleRepository : Repository<Article>, IArticleRepository
     {
         public ArticleRepository(ApplicationDbContext context)
             : base(context)

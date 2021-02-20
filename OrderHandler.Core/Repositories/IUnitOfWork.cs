@@ -7,7 +7,7 @@ namespace OrderHandler.Core
     public interface IUnitOfWork : IDisposable
     {
         IOrderRepository Orders { get; }
-        IOrderRowRepository Artists { get; }
+        IOrderRowRepository OrderRows { get; }
         IArticleRepository Articles { get; }
         Task<int> CommitAsync();
     }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using OrderHandler.Core.Models;
 using System.Collections.Generic;
 
 namespace OrderHandler.Data
