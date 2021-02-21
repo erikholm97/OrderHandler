@@ -12,30 +12,9 @@ namespace OrderHandler.Data.Repositories
         public OrderRepository(ApplicationDbContext context)
             : base(context)
         { }
-
-        public Task<int> CreateOrder(Order orderToCreate)
+        private ApplicationDbContext ApplicationDbContext
         {
-            throw new System.NotImplementedException();
-        }
-
-        public Task DeleteOrder(Order order)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public Task<List<Order>> GetAllOrders()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public Task<Order> GetOrderById(int id)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public Task UpdateOrder(Order order)
-        {
-            throw new System.NotImplementedException();
+            get { return Context as ApplicationDbContext; }
         }
     }
 }

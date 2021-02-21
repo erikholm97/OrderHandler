@@ -8,9 +8,6 @@ namespace OrderHandler.Core.Repositories
 {
     public interface IArticleRepository : IRepository<Article>
     {
-        Task<Article> CreateArticleAsync(Article articleToCreate);
-
-        Task<Article> GetIfArticleByNameExistAsync(string articleName);
         
     }
 }

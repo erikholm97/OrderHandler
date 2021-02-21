@@ -12,11 +12,9 @@ namespace OrderHandler.Core.Repositories
 
         Task<List<OrderRow>> GetOrderRowsByOrderId(int id);
 
-        Task<List<OrderRow>> GetAllOrderRows();
-
+        Task DeleteOrderRowsByOrderId(int orderId);
         Task<List<OrderRow>> GetOrderRowsByArticleName(string articleName);
 
-        Task DeleteOrderRowsByOrderId(int orderId);
 
     }
 }

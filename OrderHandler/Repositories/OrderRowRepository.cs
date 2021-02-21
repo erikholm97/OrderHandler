@@ -1,43 +1,48 @@
-﻿using OrderHandler.Core.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using OrderHandler.Core.Models;
 using OrderHandler.Core.Repositories;
 using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace OrderHandler.Data.Repositories
 {
     public class OrderRowRepository : Repository<OrderRow>, IOrderRowRepository
     {
-        private ApplicationDbContext context;
+        private ApplicationDbContext _context;
 
         public OrderRowRepository(ApplicationDbContext context)
            : base(context)
         { }
 
-        public Task<int> CreateOrderRow(OrderRow orderRowToCreate)
+        public async Task<int> CreateOrderRow(OrderRow orderRowToCreate)
         {
-            throw new NotImplementedException();
+           await _context.OrderRows.AddAsync(orderRowToCreate);
+
+            return orderRowToCreate.Id;
         }
 
-        public Task DeleteOrderRowsByOrderId(int orderId)
+        public async Task DeleteOrderRowsByOrderId(int orderId)
         {
-            throw new NotImplementedException();
+            var orderrows = _context.OrderRows.Where(x => x.OrderId == orderId).ToList();
+
+            _context.OrderRows.RemoveRange(orderrows);
         }
 
-        public Task<List<OrderRow>> GetAllOrderRows()
+        public async Task<List<OrderRow>> GetOrderRowsByArticleName(string articleName)
         {
-            throw new NotImplementedException();
+            return await _context.OrderRows.Include(x => x.Article).Where(x => x.Article.ArticleName == articleName).ToListAsync();
         }
 
-        public Task<List<OrderRow>> GetOrderRowsByArticleName(string articleName)
+        public async Task<List<OrderRow>> GetOrderRowsByOrderId(int orderId)
         {
-            throw new NotImplementedException();
+           return await _context.OrderRows.Where(x => x.OrderId == orderId).ToListAsync();
         }
 
-        public Task<List<OrderRow>> GetOrderRowsByOrderId(int id)
+        private ApplicationDbContext ApplicationDbContext
         {
-            throw new NotImplementedException();
+            get { return Context as ApplicationDbContext; }
         }
     }
 }

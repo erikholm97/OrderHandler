@@ -38,24 +38,24 @@ namespace OrderHandler.Data.Repositories
             return await Context.Set<TEntity>().ToListAsync();
         }
 
-        public ValueTask<TEntity> GetByIdAsync(int id)
+        public async ValueTask<TEntity> GetByIdAsync(int id)
         {
-            return Context.Set<TEntity>().FindAsync(id);
+            return await Context.Set<TEntity>().FindAsync(id);
         }
 
-        public void Remove(TEntity entity)
+        public async void Remove(TEntity entity)
         {
             Context.Set<TEntity>().Remove(entity);
         }
 
-        public void RemoveRange(IEnumerable<TEntity> entities)
+        public async void RemoveRange(IEnumerable<TEntity> entities)
         {
             Context.Set<TEntity>().RemoveRange(entities);
         }
 
-        public Task<TEntity> SingleOrDefaultAsync(Expression<Func<TEntity, bool>> predicate)
+        public async Task<TEntity> SingleOrDefaultAsync(Expression<Func<TEntity, bool>> predicate)
         {
-            return Context.Set<TEntity>().SingleOrDefaultAsync(predicate);
+            return await Context.Set<TEntity>().SingleOrDefaultAsync(predicate);
         }
     }
 }

@@ -13,17 +13,6 @@ namespace OrderHandler.Data.Repositories
             : base(context)
         { }
 
-        public async Task<Article> CreateArticleAsync(Article articleToCreate)
-        {
-            throw new NotImplementedException();
-        }
-
-    
-        public async Task<Article> GetIfArticleByNameExistAsync(string articleName)
-        {
-            throw new NotImplementedException();
-        }
-
         private ApplicationDbContext ApplicationDbContext
         {
             get { return Context as ApplicationDbContext; }

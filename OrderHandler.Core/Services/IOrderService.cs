@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OrderHandler.Services
+namespace OrderHandler.Core.Services
 {
-    interface IOrderService
+    public interface IOrderService
     {
         Task<List<Order>> GetAllOrders();
         Task<Order> GetOrderById(int id);

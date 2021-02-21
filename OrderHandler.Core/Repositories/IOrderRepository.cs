@@ -8,12 +8,6 @@ namespace OrderHandler.Core.Repositories
 {
     public interface IOrderRepository : IRepository<Order>
     {
-        Task<List<Order>> GetAllOrders();
-        Task<Order> GetOrderById(int id);
-        Task <int> CreateOrder(Order orderToCreate);
 
-        Task DeleteOrder(Order order);
-
-        Task UpdateOrder(Order order);
     }
 }
