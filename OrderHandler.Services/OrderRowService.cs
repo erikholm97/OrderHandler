@@ -5,39 +5,41 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace OrderHandler.Services
 {
-    public class OrderRowService : IOrderService
+    public class OrderRowService : IOrderRowService
     {
         private readonly IUnitOfWork _unitOfWork;
-        public OrderRowService(IUnitOfWork unitOfWork)
+
+        public async Task<OrderRow> CreateOrderRow(OrderRow orderRowToCreate)
         {
-            this._unitOfWork = unitOfWork;
-        }
-        public Task<int> CreateOrder(Order orderToCreate)
-        {
-            throw new NotImplementedException();
+            await _unitOfWork.OrderRows.AddAsync(orderRowToCreate);
+
+            return orderRowToCreate;
         }
 
-        public async Task DeleteOrder(Order order)
+        public async Task DeleteOrderRowsByOrderId(int orderId)
         {
-            _unitOfWork.OrderRows
+            await _unitOfWork.OrderRows.DeleteOrderRowsByOrderId(orderId);
         }
 
-        public Task<List<Order>> GetAllOrders()
+        public async Task<List<OrderRow>> GetAllOrderRows()
         {
-            throw new NotImplementedException();
+            var orderRows = await _unitOfWork.OrderRows.GetAllAsync();
+
+            return orderRows.ToList();
         }
 
-        public Task<Order> GetOrderById(int id)
+        public async Task<List<OrderRow>> GetOrderRowsByArticleName(string articleName)
         {
-            throw new NotImplementedException();
+            return await _unitOfWork.OrderRows.GetOrderRowsByArticleName(articleName);
         }
 
-        public Task UpdateOrder(Order order)
+        public async Task<List<OrderRow>> GetOrderRowsByOrderId(int id)
         {
-            throw new NotImplementedException();
+            return await _unitOfWork.OrderRows.GetOrderRowsByOrderId(id);
         }
     }
 }

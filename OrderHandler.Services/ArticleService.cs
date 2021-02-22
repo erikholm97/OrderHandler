@@ -15,12 +15,14 @@ namespace OrderHandler.Services
 
         public async Task<Article> CreateArticle(Article articleToCreate)
         {
-            await _unitOfWork.G
+            await _unitOfWork.Articles.AddAsync(articleToCreate);
+
+            return articleToCreate;
         }
 
-        public Task<Article> GetIfArticleByNameExist(string articleName)
+        public async Task<Article> GetIfArticleByNameExist(string articleName)
         {
-            throw new System.NotImplementedException();
+            return await _unitOfWork.Articles.GetIfArticleByNameExistAsync(articleName);
         }
     }
 }

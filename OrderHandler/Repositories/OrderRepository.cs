@@ -7,7 +7,7 @@ namespace OrderHandler.Data.Repositories
 {
     public class OrderRepository : Repository<Order>, IOrderRepository
     {
-        private ApplicationDbContext context;
+        private ApplicationDbContext _context;
 
         public OrderRepository(ApplicationDbContext context)
             : base(context)
