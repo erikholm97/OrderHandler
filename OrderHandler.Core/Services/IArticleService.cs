@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace OrderHandler.Core.Services
 {
-    interface IArticleService
+    public interface IArticleService
     {
         Task<Article> CreateArticle(Article articleToCreate);
 

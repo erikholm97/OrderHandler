@@ -1,4 +1,5 @@
-﻿using OrderHandler.Core.Models;
+﻿using OrderHandler.Core;
+using OrderHandler.Core.Models;
 using OrderHandler.Core.Services;
 using System.Threading.Tasks;
 
@@ -7,14 +8,14 @@ namespace OrderHandler.Services
     public class ArticleService : IArticleService
     {
         private readonly IUnitOfWork _unitOfWork;
-        public ArtistService(IUnitOfWork unitOfWork)
+        public ArticleService(IUnitOfWork unitOfWork)
         {
             this._unitOfWork = unitOfWork;
         }
 
-        public Task<Article> CreateArticle(Article articleToCreate)
+        public async Task<Article> CreateArticle(Article articleToCreate)
         {
-            throw new System.NotImplementedException();
+            await _unitOfWork.G
         }
 
         public Task<Article> GetIfArticleByNameExist(string articleName)

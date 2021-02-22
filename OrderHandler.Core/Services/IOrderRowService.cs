@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OrderHandler.Services
+namespace OrderHandler.Core.Services
 {
-    interface IOrderRowService
+    public interface IOrderRowService
     {
         Task<OrderRow> CreateOrderRow(OrderRow orderRowToCreate);
 

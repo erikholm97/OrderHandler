@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\OrderHandler.Core\OrderHandler.Core.csproj" />
+    <ProjectReference Include="..\OrderHandler\OrderHandler.Data.csproj" />
   </ItemGroup>
 
 </Project>
