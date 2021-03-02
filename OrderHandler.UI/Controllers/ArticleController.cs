@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using OrderHandler.Data;
 using OrderHandler.UI.Models;
 using OrderHandler.UI.Helpers;
+using OrderHandler.Core.Models;
 
 namespace OrderHandler.UI.Controllers
 {

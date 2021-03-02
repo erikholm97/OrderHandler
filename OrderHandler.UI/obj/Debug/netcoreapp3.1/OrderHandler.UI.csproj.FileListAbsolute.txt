@@ -288,8 +288,6 @@ C:\CGI\OrderHandler\OrderHandler.UI\bin\Debug\netcoreapp3.1\OrderHandler.Core.pd
 C:\CGI\OrderHandler\OrderHandler.UI\obj\Debug\netcoreapp3.1\OrderHandler.UI.csprojAssemblyReference.cache
 C:\CGI\OrderHandler\OrderHandler.UI\obj\Debug\netcoreapp3.1\OrderHandler.UI.AssemblyInfoInputs.cache
 C:\CGI\OrderHandler\OrderHandler.UI\obj\Debug\netcoreapp3.1\OrderHandler.UI.AssemblyInfo.cs
-C:\CGI\OrderHandler\OrderHandler.UI\obj\Debug\netcoreapp3.1\OrderHandler.UI.csproj.CoreCompileInputs.cache
-C:\CGI\OrderHandler\OrderHandler.UI\obj\Debug\netcoreapp3.1\OrderHandler.UI.MvcApplicationPartsAssemblyInfo.cache
 C:\CGI\OrderHandler\OrderHandler.UI\obj\Debug\netcoreapp3.1\OrderHandler.UI.RazorAssemblyInfo.cache
 C:\CGI\OrderHandler\OrderHandler.UI\obj\Debug\netcoreapp3.1\OrderHandler.UI.RazorAssemblyInfo.cs
 C:\CGI\OrderHandler\OrderHandler.UI\obj\Debug\netcoreapp3.1\OrderHandler.UI.TagHelpers.input.cache
@@ -316,3 +314,7 @@ C:\CGI\OrderHandler\OrderHandler.UI\obj\Debug\netcoreapp3.1\staticwebassets\Orde
 C:\CGI\OrderHandler\OrderHandler.UI\obj\Debug\netcoreapp3.1\OrderHandler.UI.dll
 C:\CGI\OrderHandler\OrderHandler.UI\obj\Debug\netcoreapp3.1\OrderHandler.UI.pdb
 C:\CGI\OrderHandler\OrderHandler.UI\obj\Debug\netcoreapp3.1\OrderHandler.UI.genruntimeconfig.cache
+C:\CGI\OrderHandler\OrderHandler.UI\bin\Debug\netcoreapp3.1\OrderHandler.Services.dll
+C:\CGI\OrderHandler\OrderHandler.UI\bin\Debug\netcoreapp3.1\OrderHandler.Services.pdb
+C:\CGI\OrderHandler\OrderHandler.UI\bin\Debug\netcoreapp3.1\AutoMapper.dll
+C:\CGI\OrderHandler\OrderHandler.UI\bin\Debug\netcoreapp3.1\AutoMapper.Extensions.Microsoft.DependencyInjection.dll

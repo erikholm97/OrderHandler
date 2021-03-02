@@ -8,7 +8,7 @@ namespace OrderHandler.Core.Services
 {
     public interface IOrderRowService
     {
-        Task<OrderRow> CreateOrderRow(OrderRow orderRowToCreate);
+        Task<int> CreateOrderRow(OrderRow orderRowToCreate);
 
         Task<List<OrderRow>> GetOrderRowsByOrderId(int id);
 

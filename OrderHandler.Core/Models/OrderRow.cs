@@ -28,5 +28,9 @@ namespace OrderHandler.Core.Models
         public int ArticleId { get; set; }
         public Article Article { get; set; }
 
+        public object GetOrderRowsByArticleName(string articleName)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

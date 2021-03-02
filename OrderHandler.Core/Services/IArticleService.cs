@@ -5,7 +5,7 @@ namespace OrderHandler.Core.Services
 {
     public interface IArticleService
     {
-        Task<Article> CreateArticle(Article articleToCreate);
+        Task<int> CreateArticle(Article articleToCreate);
 
         Task<Article> GetIfArticleByNameExist(string articleName);
     }

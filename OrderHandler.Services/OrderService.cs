@@ -1,4 +1,5 @@
-﻿using OrderHandler.Core.Models;
+﻿using OrderHandler.Core;
+using OrderHandler.Core.Models;
 using OrderHandler.Core.Services;
 using System;
 using System.Collections.Generic;
@@ -10,28 +11,30 @@ namespace OrderHandler.Services
     public class OrderService : IOrderService
     {
         private readonly IUnitOfWork _unitOfWork;
-        public ArtistService(IUnitOfWork unitOfWork)
+        public OrderService(IUnitOfWork unitOfWork)
         {
             this._unitOfWork = unitOfWork;
         }
-        public Task<int> CreateOrder(Order orderToCreate)
+        public async Task<int> CreateOrder(Order orderToCreate)
         {
-            throw new NotImplementedException();
+            await _unitOfWork.Orders.AddAsync(orderToCreate);
+
+            return orderToCreate.Id;
         }
 
-        public Task DeleteOrder(Order order)
+        public async Task DeleteOrder(Order order)
         {
-            throw new NotImplementedException();
+           _unitOfWork.Orders.Remove(order);
         }
 
-        public Task<List<Order>> GetAllOrders()
+        public async Task<List<Order>> GetAllOrders()
         {
-            throw new NotImplementedException();
+           return await _unitOfWork.Orders.GetAllAsync();
         }
 
-        public Task<Order> GetOrderById(int id)
+        public async Task<Order> GetOrderById(int id)
         {
-            throw new NotImplementedException();
+            return await _unitOfWork.Orders.GetByIdAsync(id);
         }
 
         public Task UpdateOrder(Order order)
