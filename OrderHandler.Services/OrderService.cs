@@ -18,6 +18,7 @@ namespace OrderHandler.Services
         public async Task<int> CreateOrder(Order orderToCreate)
         {
             await _unitOfWork.Orders.AddAsync(orderToCreate);
+            await _unitOfWork.CommitAsync();
 
             return orderToCreate.Id;
         }

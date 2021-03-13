@@ -35,7 +35,7 @@ namespace OrderHandler.Data.Repositories
             return await _context.OrderRows.Include(x => x.Article).Where(x => x.Article.ArticleName == articleName).ToListAsync();
         }
 
-        public async Task<List<OrderRow>> GetOrderRowsByOrderId(int orderId)
+        public async Task<List<OrderRow>> GetOrderRowsByOrderIdAsync(int orderId)
         {
            return await _context.OrderRows.Where(x => x.OrderId == orderId).ToListAsync();
         }

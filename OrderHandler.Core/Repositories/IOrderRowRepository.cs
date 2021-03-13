@@ -10,7 +10,7 @@ namespace OrderHandler.Core.Repositories
     {
         Task<int> CreateOrderRow(OrderRow orderRowToCreate);
 
-        Task<List<OrderRow>> GetOrderRowsByOrderId(int id);
+        Task<List<OrderRow>> GetOrderRowsByOrderIdAsync(int id);
 
         Task DeleteOrderRowsByOrderId(int orderId);
         Task<List<OrderRow>> GetOrderRowsByArticleName(string articleName);
