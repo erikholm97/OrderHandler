@@ -33,7 +33,7 @@ namespace OrderHandler.Data.Repositories
             return Context.Set<TEntity>().Where(predicate);
         }
 
-        public async Task<IEnumerable<TEntity>> GetAllAsync()
+        public async Task<List<TEntity>> GetAllAsync()
         {
             return await Context.Set<TEntity>().ToListAsync();
         }

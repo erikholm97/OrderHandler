@@ -13,11 +13,11 @@ namespace OrderHandler.Services
             this._unitOfWork = unitOfWork;
         }
 
-        public async Task<Article> CreateArticle(Article articleToCreate)
+        public async Task<int> CreateArticle(Article articleToCreate)
         {
             await _unitOfWork.Articles.AddAsync(articleToCreate);
 
-            return articleToCreate;
+            return articleToCreate.Id;
         }
 
         public async Task<Article> GetIfArticleByNameExist(string articleName)

@@ -10,26 +10,30 @@ namespace OrderHandler.UI.Helpers
     {
         public static int GetOrderRowNumber(int orderId)
         {
-            using(ApplicationDbContext db = new ApplicationDbContext())
-            {
-                var orderRows = db.OrderRows.Select(x => x).Where(x => x.RowNumber == orderId).ToList();
+            //using(ApplicationDbContext db = new ApplicationDbContext())
+            //{
+            //    var orderRows = db.OrderRows.Select(x => x).Where(x => x.RowNumber == orderId).ToList();
 
-                if(orderRows.Count == 0)
-                {
-                    return 1;
-                }
+            //    if(orderRows.Count == 0)
+            //    {
+            //        return 1;
+            //    }
 
-                return orderRows.Select(x => x.RowNumber).Max();
-                
+            //    return orderRows.Select(x => x.RowNumber).Max();
 
-            }
+
+            //}
+
+            return 0;
         }
 
         public static long GetOrderSum(int articlePrice, int articleAmount)
         {
-            long sum = articlePrice * articleAmount;
+            //long sum = articlePrice * articleAmount;
 
-            return sum;
+            //return sum;
+
+            return 0;
         }
     }
 }

@@ -21,7 +21,7 @@ namespace OrderHandler.Data.Repositories
         }
         private ApplicationDbContext ApplicationDbContext
         {
-            get { return Context as ApplicationDbContext; }
+            get { return _context as ApplicationDbContext; }
         }
     }
 }

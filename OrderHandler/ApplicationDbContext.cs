@@ -12,12 +12,10 @@ namespace OrderHandler.Data
 
         public DbSet<OrderRow> OrderRows { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer(
-                @"Server=(localdb)\mssqllocaldb;Database=OrderHandler;Integrated Security=True");
 
-        }
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+           : base(options)
+        { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

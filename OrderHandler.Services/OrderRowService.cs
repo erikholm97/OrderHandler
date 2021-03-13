@@ -41,5 +41,10 @@ namespace OrderHandler.Services
         {
             return await _unitOfWork.OrderRows.GetOrderRowsByOrderId(id);
         }
+
+        Task<int> IOrderRowService.CreateOrderRow(OrderRow orderRowToCreate)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

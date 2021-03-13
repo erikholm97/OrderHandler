@@ -32,7 +32,11 @@ namespace OrderHandler.UI.Controllers
 
         public async Task<IActionResult> Index()
         {
-            return View(await _orderContext.GetAllOrders());
+            var orders = await _orderContext.GetAllOrders();
+
+            var autoMappedOrders = _mapper.Map<List<Order>,List<OrderViewModel>> (orders);
+
+            return View(autoMappedOrders);
         }
 
         public IActionResult Create()
@@ -41,11 +45,11 @@ namespace OrderHandler.UI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(OrderViewModel1 order)
+        public async Task<IActionResult> Create(OrderViewModel order)
         {
             try
             {
-                var orderToCreate = _mapper.Map<OrderViewModel1, Order>(order);
+                var orderToCreate = _mapper.Map<OrderViewModel, Order>(order);
 
                 int id = await _orderContext.CreateOrder(orderToCreate);
 
@@ -132,7 +136,7 @@ namespace OrderHandler.UI.Controllers
                 OrderRow orderRows = new OrderRow();
                 var listOfOrders =  await _orderRowContext.GetOrderRowsByOrderId(id);
 
-                OrderViewModel1 orderView = new OrderViewModel1()
+                OrderViewModel orderView = new OrderViewModel()
                 {
                     Id = order.Id,
                     CustomerName = order.CustomerName,

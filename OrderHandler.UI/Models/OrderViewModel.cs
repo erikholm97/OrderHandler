@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace OrderHandler.UI.Models
 {
-    public class OrderViewModel1
+    public class OrderViewModel
     {
         public int? Id { get; set; }
         public string CustomerName { get; set; }

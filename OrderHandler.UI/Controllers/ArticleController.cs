@@ -8,22 +8,34 @@ using OrderHandler.Data;
 using OrderHandler.UI.Models;
 using OrderHandler.UI.Helpers;
 using OrderHandler.Core.Models;
+using OrderHandler.Core.Services;
+using AutoMapper;
 
 namespace OrderHandler.UI.Controllers
 {
     public class ArticleController : Controller
     {
-        // GET: OrderRowController
-        public IActionResult Index(string articleName)
+        public IArticleService _articleContext { get; set; }
+
+        public IOrderRowService _orderRowContext { get; set; }
+
+        public IMapper _mapper;
+
+        public ArticleController(IArticleService articleContext)
         {
-            OrderRow or = new OrderRow();
+            this._articleContext = articleContext;
+            this._orderRowContext = _orderRowContext;
+        }
+        // GET: OrderRowController
+        public async Task<IActionResult> Index(string articleName)
+        {
             ArticleViewModel articlesWithOrderRows = new ArticleViewModel();
             articlesWithOrderRows.OrderRowsFound = 0;
             articlesWithOrderRows.OrderRow = new List<OrderRowViewModel>();
 
             try
             {
-                var orderRows = or.GetOrderRowsByArticleName(articleName);
+                var orderRows = await _orderRowContext.GetOrderRowsByArticleName(articleName);
 
                 foreach (var orderRow in orderRows)
                 {

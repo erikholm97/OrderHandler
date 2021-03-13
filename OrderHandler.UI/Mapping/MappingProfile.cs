@@ -14,7 +14,7 @@ namespace OrderHandler.UI.Mapping
         {
             // Domain to Resource
             CreateMap<Article, ArticleViewModel>();
-            CreateMap<Order, OrderViewModel1>();
+            CreateMap<Order, OrderViewModel>();
 
             // Resource to Domain
             CreateMap<OrderRow, OrderRowViewModel>(); //Todo config map profile. 

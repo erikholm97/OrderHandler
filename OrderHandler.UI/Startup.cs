@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using OrderHandler.Core;
 using OrderHandler.Core.Services;
 using OrderHandler.Data;
 using OrderHandler.Services;
@@ -26,7 +27,7 @@ namespace OrderHandler.UI
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
-        {
+        {       
             services.AddControllersWithViews();
 
             services.AddScoped<IOrderService, OrderService>();
@@ -35,9 +36,11 @@ namespace OrderHandler.UI
 
             services.AddScoped<IArticleService, ArticleService>();
 
-            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("OrderHandler"), x => x.MigrationsAssembly("OrderHandler.Data")));
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             services.AddAutoMapper(typeof(Startup));
+
+            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Default"), x => x.MigrationsAssembly("OrderHandler.Data")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
