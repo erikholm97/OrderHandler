@@ -178,7 +178,11 @@ namespace OrderHandler.UI.Controllers
         {
             try
             {
-                return View(await _orderContext.GetOrderById(id));
+                var order = await _orderContext.GetOrderById(id);
+
+                var orderResource = _mapper.Map<Order, OrderViewModel>(order);
+
+                return View(orderResource);
             }
             catch (Exception ex)
             {
