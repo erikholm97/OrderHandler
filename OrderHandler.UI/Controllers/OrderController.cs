@@ -174,15 +174,17 @@ namespace OrderHandler.UI.Controllers
 
         }
 
-        public async Task<IActionResult> EditAsync(int id)
+        public async Task<IActionResult> Edit(int id)
         {
             try
             {
-                var order = await _orderContext.GetOrderById(id);
+                //var order = await _orderContext.GetOrderById(id);
 
-                var orderResource = _mapper.Map<Order, OrderViewModel>(order);
+                //var orderResource = _mapper.Map<Order, OrderRowViewModel>(order);
 
-                return View(orderResource);
+                var ordeRowVIewModel = new OrderRowViewModel();
+
+                return View(ordeRowVIewModel);
             }
             catch (Exception ex)
             {

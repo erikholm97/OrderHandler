@@ -1,5 +1,6 @@
 ﻿@model OrderHandler.UI.Models.OrderRowViewModel
 
+
 @{
     ViewData["Title"] = "EditAsync";
 }
@@ -64,5 +65,7 @@
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+     @{
+await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

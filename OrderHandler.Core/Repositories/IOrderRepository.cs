@@ -8,6 +8,6 @@ namespace OrderHandler.Core.Repositories
 {
     public interface IOrderRepository : IRepository<Order>
     {
-
+        
     }
 }

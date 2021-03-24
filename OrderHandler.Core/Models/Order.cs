@@ -13,6 +13,8 @@ namespace OrderHandler.Core.Models
         public int Id { get; set; }
         [Required]
         public string CustomerName { get; set; }
+
+        public List<OrderRow> OrderRows { get; set; }
         
     }
 }
