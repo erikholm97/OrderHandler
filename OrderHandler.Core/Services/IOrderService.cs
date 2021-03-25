@@ -12,6 +12,6 @@ namespace OrderHandler.Core.Services
         Task<Order> GetOrderById(int id);
         Task<int> CreateOrder(Order orderToCreate);
         Task DeleteOrder(Order order);
-        Task UpdateOrder(Order order);
+        Task UpdateOrder(Order orderToBeUpdated, Order orderToUpdate);
     }
 }

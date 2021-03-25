@@ -38,9 +38,11 @@ namespace OrderHandler.Services
             return await _unitOfWork.Orders.GetByIdAsync(id);
         }
 
-        public Task UpdateOrder(Order order)
+        public async Task UpdateOrder(Order orderToBeUpdated, Order orderToUpdate)
         {
-            throw new NotImplementedException();
+            orderToBeUpdated.CustomerName = orderToUpdate.CustomerName;
+
+            await _unitOfWork.CommitAsync();
         }
     }
 }

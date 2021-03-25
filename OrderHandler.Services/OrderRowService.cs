@@ -39,7 +39,7 @@ namespace OrderHandler.Services
 
         public async Task<List<OrderRow>> GetOrderRowsByOrderId(int id)
         {
-            return await _unitOfWork.OrderRows.GetOrderRowsByOrderIdAsync(id);
+            return await _unitOfWork.OrderRows.GetOrderRowsWithOrderByOrderIdAsync(id);
         }
 
         Task<int> IOrderRowService.CreateOrderRow(OrderRow orderRowToCreate)

@@ -178,13 +178,9 @@ namespace OrderHandler.UI.Controllers
         {
             try
             {
-                //var order = await _orderContext.GetOrderById(id);
+                var order = await _orderContext.GetOrderById(id);
 
-                //var orderResource = _mapper.Map<Order, OrderRowViewModel>(order);
-
-                var ordeRowVIewModel = new OrderRowViewModel();
-
-                return View(ordeRowVIewModel);
+                return View(order);
             }
             catch (Exception ex)
             {
@@ -223,11 +219,13 @@ namespace OrderHandler.UI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> EditAsync(Order order)
+        public async Task<IActionResult> Edit(Order order)
         {
             try
             {
-                await _orderContext.UpdateOrder(order);
+                var orderToUpdate = await _orderContext.GetOrderById(order.Id);
+
+                await _orderContext.UpdateOrder(orderToUpdate, order);
 
                 return RedirectToAction("Index");
             }

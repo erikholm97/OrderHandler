@@ -40,6 +40,11 @@ namespace OrderHandler.Data.Repositories
            return await _context.OrderRows.Where(x => x.OrderId == orderId).ToListAsync();
         }
 
+        public async Task<List<OrderRow>> GetOrderRowsWithOrderByOrderIdAsync(int id)
+        {
+            return await _context.OrderRows.Include(x => x.Order).Where(x => x.Id == id).ToListAsync();
+        }
+
         private ApplicationDbContext ApplicationDbContext
         {
             get { return Context as ApplicationDbContext; }
