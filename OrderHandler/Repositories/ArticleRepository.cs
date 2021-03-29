@@ -10,18 +10,17 @@ namespace OrderHandler.Data.Repositories
 {
     public class ArticleRepository : Repository<Article>, IArticleRepository
     {
-        private ApplicationDbContext _context;
         public ArticleRepository(ApplicationDbContext context)
             : base(context)
         { }
 
         public async Task<Article> GetIfArticleByNameExistAsync(string articleName)
         {
-            return await _context.Articles.FirstOrDefaultAsync(x => x.ArticleName == articleName);
+            return await ApplicationDbContext.Articles.FirstOrDefaultAsync(x => x.ArticleName == articleName);
         }
         private ApplicationDbContext ApplicationDbContext
         {
-            get { return _context as ApplicationDbContext; }
+            get { return Context as ApplicationDbContext; }
         }
     }
 }
