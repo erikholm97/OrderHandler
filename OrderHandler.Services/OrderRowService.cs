@@ -13,6 +13,10 @@ namespace OrderHandler.Services
     {
         private readonly IUnitOfWork _unitOfWork;
 
+        public OrderRowService(IUnitOfWork unitOfWork)
+        {
+            this._unitOfWork = unitOfWork;
+        }
         public async Task<OrderRow> CreateOrderRow(OrderRow orderRowToCreate)
         {
             await _unitOfWork.OrderRows.AddAsync(orderRowToCreate);
