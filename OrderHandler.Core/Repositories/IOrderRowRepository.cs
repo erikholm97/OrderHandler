@@ -14,6 +14,6 @@ namespace OrderHandler.Core.Repositories
 
         Task DeleteOrderRowsByOrderId(int orderId);
         Task<List<OrderRow>> GetOrderRowsByArticleName(string articleName);
-
+        Task<int> GetOrderRowNumberAsync(int orderId);
     }
 }

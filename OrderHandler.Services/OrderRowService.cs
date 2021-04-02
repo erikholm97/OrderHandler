@@ -17,11 +17,11 @@ namespace OrderHandler.Services
         {
             this._unitOfWork = unitOfWork;
         }
-        public async Task<OrderRow> CreateOrderRow(OrderRow orderRowToCreate)
+        public async Task<int> CreateOrderRow(OrderRow orderRowToCreate)
         {
             await _unitOfWork.OrderRows.AddAsync(orderRowToCreate);
 
-            return orderRowToCreate;
+            return orderRowToCreate.OrderId;
         }
 
         public async Task DeleteOrderRowsByOrderId(int orderId)
@@ -46,9 +46,9 @@ namespace OrderHandler.Services
             return await _unitOfWork.OrderRows.GetOrderRowsWithOrderByOrderIdAsync(id);
         }
 
-        Task<int> IOrderRowService.CreateOrderRow(OrderRow orderRowToCreate)
+        public async Task<int> GetOrderRowNumber(int orderId)
         {
-            throw new NotImplementedException();
+            return await _unitOfWork.OrderRows.GetOrderRowNumberAsync(orderId);
         }
     }
 }

@@ -16,5 +16,7 @@ namespace OrderHandler.Core.Services
 
         Task<List<OrderRow>> GetOrderRowsByArticleName(string articleName);
         Task DeleteOrderRowsByOrderId(int orderId);
+
+        Task<int> GetOrderRowNumber(int orderId);
     }
 }

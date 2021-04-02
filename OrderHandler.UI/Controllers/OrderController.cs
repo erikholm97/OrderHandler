@@ -112,7 +112,7 @@ namespace OrderHandler.UI.Controllers
                 {
                     ArticleId = articleId,
                     OrderId = orderRow.OrderId,
-                    RowNumber = OrderHelper.GetOrderRowNumber(orderRow.OrderId),
+                    RowNumber = await _orderRowContext.GetOrderRowNumber(orderRow.OrderId),
                     ArticleAmount = orderRow.ArticleAmount,
                 };
 

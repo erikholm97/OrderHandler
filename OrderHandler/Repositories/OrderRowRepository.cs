@@ -44,6 +44,18 @@ namespace OrderHandler.Data.Repositories
             return await ApplicationDbContext.OrderRows.Include(x => x.Order).Include(x => x.Article).Where(x => x.Id == id).ToListAsync();
         }
 
+        public async Task<int> GetOrderRowNumberAsync(int orderId)
+        {
+            var orderRows = await ApplicationDbContext.OrderRows.Where(x => x.RowNumber == orderId).ToListAsync();
+
+            if (orderRows.Count == 0)
+            {
+                return 1;
+            }
+
+            return orderRows.Select(x => x.RowNumber).Max();
+        }
+
         private ApplicationDbContext ApplicationDbContext
         {
             get { return Context as ApplicationDbContext; }
