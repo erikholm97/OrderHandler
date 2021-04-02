@@ -126,7 +126,7 @@ namespace OrderHandler.UI.Controllers
             }
         }
 
-        public async Task<IActionResult> DetailsAsync(int id)
+        public async Task<IActionResult> Details(int id)
         {
             try
             {
