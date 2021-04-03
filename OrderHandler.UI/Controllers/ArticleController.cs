@@ -21,7 +21,7 @@ namespace OrderHandler.UI.Controllers
 
         public IMapper _mapper;
 
-        public ArticleController(IArticleService articleContext)
+        public ArticleController(IArticleService articleContext, IOrderRowService _orderRowContext)
         {
             this._articleContext = articleContext;
             this._orderRowContext = _orderRowContext;
