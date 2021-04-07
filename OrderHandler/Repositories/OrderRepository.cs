@@ -2,6 +2,7 @@
 using OrderHandler.Core.Models;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 
 namespace OrderHandler.Data.Repositories
 {
@@ -19,7 +20,7 @@ namespace OrderHandler.Data.Repositories
 
         public async Task<Order> GetOrderByIdWithOrderRows(int id)
         {
-            return await ApplicationDbContext.Orders.Include(x => x.OrderRows).SingleOrDefaultAsync();
+            return await ApplicationDbContext.Orders.Include(x => x.OrderRows).SingleOrDefaultAsync(x => x.Id == id);
         }         
     }
 }
