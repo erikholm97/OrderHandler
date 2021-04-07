@@ -188,11 +188,13 @@ namespace OrderHandler.UI.Controllers
             }
         }
 
-        public async Task<IActionResult> DeleteAsync(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             try
             {
-                return View(await _orderContext.GetOrderById(id));
+                var order = await _orderContext.GetOrderById(id);
+
+                return View(order);
             }
             catch (Exception ex)
             {
@@ -201,7 +203,7 @@ namespace OrderHandler.UI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> DeleteAsync(Order order)
+        public async Task<IActionResult> Delete(Order order)
         {
             try
             {
