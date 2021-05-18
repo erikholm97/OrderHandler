@@ -33,13 +33,22 @@
     .Grid(Model)
     .Build(columns =>
     {
-        columns.Add(model => model.Id).Titled("Name");
-        columns.Add(model => model.ArticleName).Titled("Surname");
+        columns.Add(model => model.Id).Titled("Id");
+        columns.Add(model => model.ArticleName).Titled("Article Name");
+        columns.Add(model => model.Price).Titled("Article Price");
+        columns.Add(model => model.ArticleNumber).Titled("Article Number");
     })
-    .Using(GridFilterMode.Header)
+    .Using(GridFilterMode.Row)
     .Empty("No data found")
     .Filterable()
     .Sortable()
     .Pageable()
+    .Css("css-classes") // Overwrites all classes with the new ones
+    .AppendCss("table-hover") // Appends classes to the current ones
 )
+<style>
+    .table-hover tbody tr:hover {
+        background-color: rgba(0, 0, 0, 0.04);
+    }
+</style>
 
