@@ -7,10 +7,13 @@ namespace OrderHandler.UI.Models
 {
     public class ArticleViewModel
     {
-        public int OrderRowsFound { get; set; }
+ 
+        public int Id { get; set; }
 
-        public List<OrderRowViewModel> OrderRow { get; set; }
+        public int ArticleNumber { get; set; }
 
-        public long OrderRowSum { get; set; }
+        public string ArticleName { get; set; }
+
+        public int Price { get; set; }
     }
 }

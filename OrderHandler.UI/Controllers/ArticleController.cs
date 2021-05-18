@@ -23,10 +23,11 @@ namespace OrderHandler.UI.Controllers
 
         public IMapper _mapper;
 
-        public ArticleController(IArticleService articleContext)
+        public ArticleController(IArticleService articleContext, IMapper mapper)
         {
             this._articleContext = articleContext;
             this._orderRowContext = _orderRowContext;
+            this._mapper = mapper;
         }
         // GET: OrderRowController
         public async Task<IActionResult> Index()
@@ -41,7 +42,7 @@ namespace OrderHandler.UI.Controllers
             }
             catch(Exception ex)
             {
-                throw new Exception();
+                throw new Exception(ex.Message);
             }
         }
 
