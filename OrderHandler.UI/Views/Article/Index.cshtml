@@ -1,100 +1,30 @@
-﻿@model OrderHandler.UI.Models.ArticleViewModel
+﻿@using NonFactors.Mvc.Grid;
+@model IQueryable<OrderHandler.UI.Models.OrderRowViewModel>
+
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Articles";
 }
 
-<style>
-    .order-section {
-        display: block;
-    }
 
-    table {
-        margin-top: 20px;
-    }
-
-    table, th, td {
-        border: 1px solid black;
-        border-collapse: collapse;
-    }
-
-    th, td {
-        padding: 10px;
-    }
-
-    th {
-        text-align: left;
-    }
-</style>
 
 <h1>Articles</h1>
+@(Html
+    .Grid(Model)
+    .Build(columns =>
+    {
+        columns.Add(model => model.OrderId).Titled("Order Id");
+        columns.Add(model => model.ArticleName).Titled("Article Name");
+    })
+    .Using(GridFilterMode.Header)
+    .Empty("No data found")
+    .Filterable()
+    .Sortable()
+    .Pageable()
+)
 <form asp-controller="Article" asp-action="CreateSearchString">
     <p>
         Sökord: <input type="text" name="SearchString" />
         <input type="submit" value="Filter" />
     </p>
 </form>
-<table class="table">
-    <tr>
-        <th>
-            Artikel namn
-        </th>
-        <th>
-            Kund namn
-        </th>
-        <th>
-            Order Nr
-        </th>
-        <th>
-            Antal artiklar
-        </th>
-        <th>
-            Artikel NR
-        </th>
-        <th>
-            ST Pris
-        </th>
-        <th>
-            <b>Order Sum</b>
-        </th>
-        <th>
-            Orderrader hittade:  @Html.DisplayFor(model => model.OrderRowsFound)
-        </th>
-        <th>
-            Summa av värde för orderader:  @Html.DisplayFor(model => model.OrderRowSum)
-        </th>
-    </tr>
-
-    @foreach (var item in Model.OrderRow)
-    {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.ArticleName)
-    </td>
-    <td>
-        <b>@Html.DisplayFor(modelItem => item.CustomerName)</b>
-    </td>
-    <td>
-        <b>@Html.DisplayFor(modelItem => item.OrderId)</b>
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.ArticleAmount)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.ArticleNumber)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Price)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.OrderSum) SEK
-    </td>
-    <td>
-        <a asp-action="Edit" asp-controller="Order" asp-route-id="@item.OrderId">Ändra</a> |
-        <a asp-action="Details" asp-controller="Order" asp-route-id="@item.OrderId">Detaljer</a> |
-        <a asp-action="Delete" asp-controller="Order" asp-route-id="@item.OrderId">Ta bort</a>
-    </td>
-</tr>
-    }
-    </tbody>
-</table>
