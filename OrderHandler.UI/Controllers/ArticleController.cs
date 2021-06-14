@@ -10,6 +10,8 @@ using OrderHandler.UI.Helpers;
 using OrderHandler.Core.Models;
 using OrderHandler.Core.Services;
 using AutoMapper;
+using Newtonsoft.Json.Linq;
+using System.Collections;
 
 namespace OrderHandler.UI.Controllers
 {
@@ -21,45 +23,27 @@ namespace OrderHandler.UI.Controllers
 
         public IMapper _mapper;
 
-        public ArticleController(IArticleService articleContext, IOrderRowService _orderRowContext)
+        public ArticleController(IArticleService articleContext, IMapper mapper)
         {
             this._articleContext = articleContext;
             this._orderRowContext = _orderRowContext;
+            this._mapper = mapper;
         }
         // GET: OrderRowController
-        public async Task<IActionResult> Index(string articleName)
+        public async Task<IActionResult> Index()
         {
-            ArticleViewModel articlesWithOrderRows = new ArticleViewModel();
-            articlesWithOrderRows.OrderRowsFound = 0;
-            articlesWithOrderRows.OrderRow = new List<OrderRowViewModel>();
-
             try
             {
-                var orderRows = await _orderRowContext.GetOrderRowsByArticleName(articleName);
+                var articles = await _articleContext.GetAllArticles();
 
-                foreach (var orderRow in orderRows)
-                {
-                    articlesWithOrderRows.OrderRow.Add(new OrderRowViewModel()
-                    {
-                        ArticleAmount = orderRow.ArticleAmount,
-                        ArticleName = orderRow.Article.ArticleName,
-                        ArticleNumber = orderRow.Article.ArticleNumber,
-                        Price = orderRow.Article.Price,
-                        OrderId = orderRow.OrderId,
-                        OrderSum = OrderHelper.GetOrderSum(orderRow.Article.Price, orderRow.ArticleAmount),
-                        CustomerName = orderRow.Order.CustomerName
-                    });
+                var articlesModels = _mapper.Map<IEnumerable<Article>, IEnumerable<ArticleViewModel>> (articles);
 
-                    articlesWithOrderRows.OrderRowSum += OrderHelper.GetOrderSum(orderRow.Article.Price, orderRow.ArticleAmount);
-                    articlesWithOrderRows.OrderRowsFound++;
-                }
+                return View(articlesModels.AsQueryable());
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
-                return View("Error", ex.Message);
+                throw new Exception(ex.Message);
             }
-
-            return View(articlesWithOrderRows);
         }
 
         [HttpPost]

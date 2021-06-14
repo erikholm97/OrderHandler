@@ -173,6 +173,18 @@
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[3.1.5, )"
+            },
+            "NonFactors.Grid.Core.Mvc6": {
+              "target": "Package",
+              "version": "[6.2.4, )"
+            },
+            "NonFactors.Grid.Mvc6": {
+              "target": "Package",
+              "version": "[6.2.4, )"
+            },
+            "bootstrap": {
+              "target": "Package",
+              "version": "[4.6.0, )"
             }
           },
           "imports": [

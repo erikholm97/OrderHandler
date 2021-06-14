@@ -1,6 +1,7 @@
 ﻿using OrderHandler.Core;
 using OrderHandler.Core.Models;
 using OrderHandler.Core.Services;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace OrderHandler.Services
@@ -18,6 +19,11 @@ namespace OrderHandler.Services
             await _unitOfWork.Articles.AddAsync(articleToCreate);
 
             return articleToCreate.Id;
+        }
+
+        public async Task<IEnumerable<Article>> GetAllArticles()
+        {
+            return await _unitOfWork.Articles.GetAllAsync();
         }
 
         public async Task<Article> GetIfArticleByNameExist(string articleName)
