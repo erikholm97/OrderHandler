@@ -36,7 +36,7 @@ namespace OrderHandler.UI.Controllers
             {
                 var articles = await _articleContext.GetAllArticles();
 
-                var articlesModels = _mapper.Map<IEnumerable<Article>, IEnumerable<ArticleViewModel>> (articles);
+                var articlesModels = _mapper.Map<IEnumerable<Article>, IEnumerable<ArticleViewModel>>(articles);
 
                 return View(articlesModels.AsQueryable());
             }

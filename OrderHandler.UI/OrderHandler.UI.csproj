@@ -10,7 +10,6 @@
     <PackageReference Include="bootstrap" Version="4.6.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
     <PackageReference Include="NonFactors.Grid.Core.Mvc6" Version="6.2.4" />
-    <PackageReference Include="NonFactors.Grid.Mvc6" Version="6.2.4" />
   </ItemGroup>
 
   <ItemGroup>
