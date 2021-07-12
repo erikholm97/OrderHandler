@@ -1,14 +1,16 @@
-﻿@model OrderHandler.Core.Models.Order
+﻿@model OrderHandler.UI.Models.OrderViewModel
+@using NonFactors.Mvc.Grid;
 
-<h4>Order</h4>
+<h4>Order: @Html.DisplayFor(model => model.Id)<b></b></h4>
+<h4>Kund: @Html.DisplayFor(model => model.CustomerName)<b></b></h4>
 <hr />
-<div class="row">
-    <div class="col-md-4">
+<div class="container-fluid">
+    <div class="row">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
-                <label asp-for="CustomerName" class="control-label"></label>
+                <label asp-for="CustomerName" class="control-label">Customer Name</label>
                 <input asp-for="CustomerName" class="form-control" />
                 <span asp-validation-for="CustomerName" class="text-danger"></span>
             </div>
@@ -17,8 +19,30 @@
             </div>
         </form>
     </div>
+    @Html.ActionLink("Create Order Row", "CreateOrderRow", new { orderId = Model.Id })
+    @(Html
+            .Grid(Model.OrderRow)
+            .Build(columns =>
+            {
+                columns.Add(model => model.OrderRowNr).Titled("Id");
+                columns.Add(model => model.ArticleName).Titled("Article Name");
+                columns.Add(model => model.ArticleNumber).Titled("Article Number");
+            })
+            .Using(GridFilterMode.Row)
+            .Empty("No data found")
+            .Filterable()
+            .Sortable()
+            .Pageable()
+            .Css("css-classes") // Overwrites all classes with the new ones
+            .AppendCss("table-hover") // Appends classes to the current ones
+        )
+    @*</div>*@
 </div>
-
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
+<style>
+    .table-hover tbody tr:hover {
+        background-color: rgba(0, 0, 0, 0.04);
+    }
+</style>

@@ -118,7 +118,7 @@ namespace OrderHandler.UI.Controllers
 
                 int orderRowId = await _orderRowContext.CreateOrderRow(orderRowToCreate);
 
-                return RedirectToAction("Details", new { id = orderRow.OrderId });
+                return RedirectToAction("Edit", new { id = orderRow.OrderId });
             }
             catch (Exception ex)
             {
@@ -178,9 +178,42 @@ namespace OrderHandler.UI.Controllers
         {
             try
             {
-                var order = await _orderContext.GetOrderById(id);
+                Order order = new Order();
+                order = await _orderContext.GetOrderById(id);
 
-                return View(order);
+                OrderRow orderRows = new OrderRow();
+                var listOfOrders = await _orderRowContext.GetOrderRowsByOrderId(id);
+
+                OrderViewModel orderView = new OrderViewModel()
+                {
+                    Id = order.Id,
+                    CustomerName = order.CustomerName,
+                };
+
+                orderView.OrderRow = new List<OrderRowViewModel>();
+
+                if (listOfOrders.Count > 0)
+                {
+                    int orderRowNr = 1;
+
+                    foreach (var orderRow in listOfOrders)
+                    {
+                        orderView.OrderRow.Add(new OrderRowViewModel()
+                        {
+                            ArticleAmount = orderRow.ArticleAmount,
+                            ArticleName = orderRow.Article.ArticleName,
+                            ArticleNumber = orderRow.Article.ArticleNumber,
+                            Price = orderRow.Article.Price,
+                            OrderId = order.Id,
+                            OrderSum = OrderHelper.GetOrderSum(orderRow.Article.Price, orderRow.ArticleAmount),
+                            OrderRowNr = orderRowNr
+                        });
+
+                        orderRowNr++;
+                    }
+                }
+                return View(orderView);
+
             }
             catch (Exception ex)
             {
