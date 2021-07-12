@@ -4,9 +4,7 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
-
-<h4>OrderViewModel</h4>
+<h1>Create Order</h1>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -22,6 +20,26 @@
             </div>
         </form>
     </div>
+    <tbody>
+        @if(Model.OrderRow.Count > 0){
+            @foreach (var item in Model.OrderRow)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.OrderRowNr)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CustomerName)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.OrderRowNr }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.OrderRowNr }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.OrderRowNr })
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
 </div>
 
 <div>
