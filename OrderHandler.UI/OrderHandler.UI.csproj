@@ -8,12 +8,16 @@
     <PackageReference Include="AutoMapper" Version="10.1.1" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
     <PackageReference Include="bootstrap" Version="4.6.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.8">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
     <PackageReference Include="NonFactors.Grid.Core.Mvc6" Version="6.2.4" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\OrderHandler.Data\OrderHandler.Data.csproj" />
     <ProjectReference Include="..\OrderHandler.Services\OrderHandler.Services.csproj" />
-    <ProjectReference Include="..\OrderHandler\OrderHandler.Data.csproj" />
   </ItemGroup>
 </Project>
