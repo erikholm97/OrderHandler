@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<IdentityUser> signInManager;
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -21,7 +24,16 @@
             <a class="py-2 d-none d-md-inline-block asp-area=" asp-controller="Order" asp-action="Index">Order</a>
             <a class="py-2 d-none d-md-inline-block asp-area=" asp-controller="Article" asp-action="Index">Articles</a>
             <a class="py-2 d-none d-md-inline-block" asp-controller="Home" asp-action="About">About</a>
-            <a class="py-2 d-none d-md-inline-block" asp-controller="Account" asp-action="Register">Sign Up</a>
+            @if (signInManager.IsSignedIn(User))
+            {
+                <a class="py-2 d-none d-md-inline-block" asp-controller="Account" asp-action="Logout">Log Out</a>
+            }
+            else
+            {
+                <a class="py-2 d-none d-md-inline-block" asp-controller="Account" asp-action="Register">Sign Up</a>
+
+                <a class="py-2 d-none d-md-inline-block" asp-controller="Account" asp-action="login">Login</a>
+            }
         </div>
     </nav>
     <div class="container-fluid">
