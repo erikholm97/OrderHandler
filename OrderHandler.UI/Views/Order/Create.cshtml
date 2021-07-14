@@ -4,28 +4,39 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create Order</h1>
+<h2>Create Order</h2>
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="CustomerName" class="control-label"></label>
-                <input asp-for="CustomerName" class="form-control" />
-                <span asp-validation-for="CustomerName" class="text-danger"></span>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+                <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+                <form asp-action="Create">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <input type="hidden" asp-for="Id" />
+                            <div class="form-group">
+                                <b><label asp-for="CustomerName" class="control-label">Customer Name</label></b>
+                                <input asp-for="CustomerName" class="form-control" />
+                                <span asp-validation-for="CustomerName" class="text-danger"></span>
+                                <span asp-validation-for="CustomerName" class="text-danger"></span>
+                                <hr />
+                                <div class="form-group">
+                                    <input type="submit" value="Save" class="btn btn-primary" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+        </div>
     </div>
-</div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }

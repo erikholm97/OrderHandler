@@ -26,6 +26,8 @@ namespace OrderHandler.Services
         public async Task DeleteOrder(Order order)
         {
            _unitOfWork.Orders.Remove(order);
+
+            await _unitOfWork.CommitAsync();
         }
 
         public async Task<List<Order>> GetAllOrders()
