@@ -45,11 +45,5 @@ namespace OrderHandler.UI.Controllers
                 throw new Exception(ex.Message);
             }
         }
-
-        [HttpPost]
-        public IActionResult CreateSearchString(string searchString)
-        {
-            return RedirectToAction("Index", new { articleName = searchString });
-        }
     }
 }
