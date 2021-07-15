@@ -9,16 +9,20 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace OrderHandler.UI.Controllers
 {
+    [AllowAnonymous]
     public class HomeController : Controller
     {
-        [AllowAnonymous]
         public IActionResult Index()
         {
             return View();
         }
 
-        [AllowAnonymous]
         public IActionResult About()
+        {
+            return View();
+        }
+
+        public IActionResult Error()
         {
             return View();
         }

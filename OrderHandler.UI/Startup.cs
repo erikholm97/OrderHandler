@@ -62,7 +62,7 @@ namespace OrderHandler.UI
         {
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
+                app.UseExceptionHandler("/Home/Error");
             }
 
             else

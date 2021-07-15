@@ -37,7 +37,7 @@ namespace OrderHandler.UI.Controllers
 
                 var articlesModels = _mapper.Map<IEnumerable<Article>, IEnumerable<ArticleViewModel>>(articles);
 
-                return View(articlesModels.AsQueryable());
+                return View(articlesModels);
             }
             catch(Exception ex)
             {
