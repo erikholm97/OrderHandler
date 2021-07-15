@@ -7,6 +7,7 @@ using OrderHandler.UI.Models;
 using OrderHandler.Core.Models;
 using OrderHandler.Core.Services;
 using AutoMapper;
+using System.Linq;
 
 namespace OrderHandler.UI.Controllers
 {
@@ -31,7 +32,7 @@ namespace OrderHandler.UI.Controllers
 
                 var articlesModels = _mapper.Map<IEnumerable<Article>, IEnumerable<ArticleViewModel>>(articles);
 
-                return View(articlesModels);
+                return View(articlesModels.AsQueryable());
             }
             catch(Exception ex)
             {
