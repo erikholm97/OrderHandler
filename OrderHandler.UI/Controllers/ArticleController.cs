@@ -3,16 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using OrderHandler.Data;
 using OrderHandler.UI.Models;
-using OrderHandler.UI.Helpers;
 using OrderHandler.Core.Models;
 using OrderHandler.Core.Services;
 using AutoMapper;
-using Newtonsoft.Json.Linq;
-using System.Collections;
-using Microsoft.AspNetCore.Authorization;
 
 namespace OrderHandler.UI.Controllers
 {
