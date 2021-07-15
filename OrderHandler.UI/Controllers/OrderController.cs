@@ -13,7 +13,6 @@ using OrderHandler.UI.Models;
 
 namespace OrderHandler.UI.Controllers
 {
-    [Authorize]
     public class OrderController : Controller
     {
         public IOrderService _orderContext { get; set; }

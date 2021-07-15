@@ -35,14 +35,19 @@ namespace OrderHandler.UI.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        public async Task<IActionResult> Login(LoginViewModel model)
+        public async Task<IActionResult> Login(LoginViewModel model, string returnUrl)
         {
             if (ModelState.IsValid)
             {
                 var userCreateResult = await signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);
-
+               
                 if (userCreateResult.Succeeded)
                 {
+                    if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
+                    {
+                        return RedirectToAction("index", "order");
+                    }
+
                     return RedirectToAction("index", "home");
                 }
 

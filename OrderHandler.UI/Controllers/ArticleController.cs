@@ -16,7 +16,6 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace OrderHandler.UI.Controllers
 {
-    [Authorize]
     public class ArticleController : Controller
     {
         public IArticleService _articleContext { get; set; }
@@ -31,6 +30,7 @@ namespace OrderHandler.UI.Controllers
             this._orderRowContext = _orderRowContext;
             this._mapper = mapper;
         }
+
         // GET: OrderRowController
         public async Task<IActionResult> Index()
         {
