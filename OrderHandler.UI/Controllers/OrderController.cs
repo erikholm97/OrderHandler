@@ -23,7 +23,10 @@ namespace OrderHandler.UI.Controllers
 
         public IMapper _mapper;
 
-        public OrderController(IOrderService orderContext, IArticleService articleContext, IOrderRowService orderRowContext, IMapper mapper)
+        public OrderController(IOrderService orderContext,
+                               IArticleService articleContext,
+                               IOrderRowService orderRowContext,
+                               IMapper mapper)
         {
             this._orderContext = orderContext;
             this._articleContext = articleContext;
@@ -33,11 +36,19 @@ namespace OrderHandler.UI.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var orders = await _orderContext.GetAllOrders();
+            try
+            {
+                var orders = await _orderContext.GetAllOrders();
 
-            var autoMappedOrders = _mapper.Map<List<Order>,List<OrderViewModel>> (orders);
+                var autoMappedOrders = _mapper.Map<IEnumerable<Order>, IEnumerable<OrderViewModel>>(orders);
 
-            return View(autoMappedOrders);
+                return View(autoMappedOrders);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                throw;
+            }
         }
 
         public IActionResult Create()
@@ -54,49 +65,34 @@ namespace OrderHandler.UI.Controllers
 
                 int id = await _orderContext.CreateOrder(orderToCreate);
 
-                return RedirectToAction("CreateOrderRow", new { orderId = id });
+                return RedirectToAction("CreateOrderRowByOrderId", new { orderId = id });
             }
             catch (Exception ex)
             {
-                return View("Error", ex.Message);
+                Console.WriteLine(ex);
+                throw;
             }
         }
 
-        public IActionResult CreateOrderRow(int orderId)
+        public IActionResult CreateOrderRowByOrderId(int orderId)
         {
-            try
-            {
-                OrderRowViewModel orderRow = new OrderRowViewModel();
-                orderRow.OrderId = orderId;
-
-                return View(orderRow);
-            }
-            catch (Exception ex)
-            {
-                return View("Error", ex.Message);
-            }
+            return View("CreateOrderRow", new OrderRowViewModel { OrderId = orderId });
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateOrderRow(OrderRowViewModel orderRow)
+        public async Task<IActionResult> CreateOrderRowByOrderId(OrderRowViewModel orderRow)
         {
             try
             {
-                Article articleToCreate = new Article();
-                int articleId = 0;
+                Article articleToCreate = await _articleContext.GetIfArticleByNameExist(orderRow.ArticleName);
 
-                articleToCreate = await _articleContext.GetIfArticleByNameExist(orderRow.ArticleName);
-
-                //Article exist in database
                 if (articleToCreate != null)
                 {
-                    articleId = articleToCreate.Id;
+                    articleToCreate.Id = articleToCreate.Id;
 
-                    //Overides users choosen article number since the item exists in the db.
                     orderRow.ArticleNumber = articleToCreate.ArticleNumber;
                 }
 
-                //Create new Article
                 if (articleToCreate is null)
                 {
                     articleToCreate = new Article()
@@ -106,24 +102,25 @@ namespace OrderHandler.UI.Controllers
                         ArticleNumber = orderRow.ArticleNumber
                     };
 
-                    articleId = await _articleContext.CreateArticle(articleToCreate);
+                    articleToCreate.Id = await _articleContext.CreateArticle(articleToCreate);
                 }
 
                 OrderRow orderRowToCreate = new OrderRow()
                 {
-                    ArticleId = articleId,
+                    ArticleId = articleToCreate.Id,
                     OrderId = orderRow.OrderId,
                     RowNumber = await _orderRowContext.GetOrderRowNumber(orderRow.OrderId),
                     ArticleAmount = orderRow.ArticleAmount,
                 };
 
-                int orderRowId = await _orderRowContext.CreateOrderRow(orderRowToCreate);
+                await _orderRowContext.CreateOrderRow(orderRowToCreate);
 
                 return RedirectToAction("Edit", new { id = orderRow.OrderId });
             }
             catch (Exception ex)
             {
-                return View("Error", ex.Message);
+                Console.WriteLine(ex);
+                throw;
             }
         }
 
@@ -135,7 +132,7 @@ namespace OrderHandler.UI.Controllers
                 order = await _orderContext.GetOrderById(id);
 
                 OrderRow orderRows = new OrderRow();
-                var listOfOrders =  await _orderRowContext.GetOrderRowsByOrderId(id);
+                var listOfOrders = await _orderRowContext.GetOrderRowsByOrderId(id);
 
                 OrderViewModel orderView = new OrderViewModel()
                 {
@@ -170,7 +167,8 @@ namespace OrderHandler.UI.Controllers
             }
             catch (Exception ex)
             {
-                return View("Error", ex.Message);
+                Console.WriteLine(ex);
+                throw;
             }
 
         }
@@ -218,7 +216,26 @@ namespace OrderHandler.UI.Controllers
             }
             catch (Exception ex)
             {
-                return View("Error", ex.Message);
+                Console.WriteLine(ex);
+                throw;
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(Order order)
+        {
+            try
+            {
+                var orderToUpdate = await _orderContext.GetOrderById(order.Id);
+
+                await _orderContext.UpdateOrder(orderToUpdate, order);
+
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                throw;
             }
         }
 
@@ -226,13 +243,12 @@ namespace OrderHandler.UI.Controllers
         {
             try
             {
-                var order = await _orderContext.GetOrderById(id);
-
-                return View(order);
+                return View(await _orderContext.GetOrderById(id));
             }
             catch (Exception ex)
             {
-                return View("Error", ex.Message);
+                Console.WriteLine(ex);
+                throw;
             }
         }
 
@@ -249,25 +265,8 @@ namespace OrderHandler.UI.Controllers
             }
             catch (Exception ex)
             {
-                return View("Error", ex.Message);
-            }
-
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> Edit(Order order)
-        {
-            try
-            {
-                var orderToUpdate = await _orderContext.GetOrderById(order.Id);
-
-                await _orderContext.UpdateOrder(orderToUpdate, order);
-
-                return RedirectToAction("Index");
-            }
-            catch (Exception ex)
-            {
-                return View("Error", ex.Message);
+                Console.WriteLine(ex);
+                throw;
             }
         }
     }
