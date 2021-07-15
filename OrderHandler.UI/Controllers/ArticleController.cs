@@ -12,9 +12,11 @@ using OrderHandler.Core.Services;
 using AutoMapper;
 using Newtonsoft.Json.Linq;
 using System.Collections;
+using Microsoft.AspNetCore.Authorization;
 
 namespace OrderHandler.UI.Controllers
 {
+    [Authorize]
     public class ArticleController : Controller
     {
         public IArticleService _articleContext { get; set; }
