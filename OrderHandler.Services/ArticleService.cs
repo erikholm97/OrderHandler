@@ -17,7 +17,7 @@ namespace OrderHandler.Services
         public async Task<int> CreateArticle(Article articleToCreate)
         {
             await _unitOfWork.Articles.AddAsync(articleToCreate);
-
+            await _unitOfWork.CommitAsync();
             return articleToCreate.Id;
         }
 

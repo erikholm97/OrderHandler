@@ -20,7 +20,7 @@ namespace OrderHandler.Services
         public async Task<int> CreateOrderRow(OrderRow orderRowToCreate)
         {
             await _unitOfWork.OrderRows.AddAsync(orderRowToCreate);
-
+            await _unitOfWork.CommitAsync();
             return orderRowToCreate.OrderId;
         }
 
