@@ -6,3 +6,5 @@ obj
 packages
 .vs/OrderHandler/DesignTimeBuild/.dtbcache.v2
 OrderHandler.UI/OrderHandler.UI.csproj.user
+.vs/OrderHandler/v16/TestStore/0/000.testlog
+.vs/OrderHandler/v16/TestStore/0/testlog.manifest
