@@ -1,39 +1,13 @@
-﻿using OrderHandler.Data;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
+﻿
 namespace OrderHandler.UI.Helpers
 {
     public static class OrderHelper
     {
-        public static int GetOrderRowNumber(int orderId)
-        {
-            //using(ApplicationDbContext db = new ApplicationDbContext())
-            //{
-            //    var orderRows = db.OrderRows.Select(x => x).Where(x => x.RowNumber == orderId).ToList();
-
-            //    if(orderRows.Count == 0)
-            //    {
-            //        return 1;
-            //    }
-
-            //    return orderRows.Select(x => x.RowNumber).Max();
-
-
-            //}
-
-            return 0;
-        }
-
         public static long GetOrderSum(int articlePrice, int articleAmount)
         {
-            //long sum = articlePrice * articleAmount;
+            long sum = articlePrice * articleAmount;
 
-            //return sum;
-
-            return 0;
+            return sum;
         }
     }
 }
