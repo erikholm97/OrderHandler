@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace OrderHandler.UI.Controllers
 {
+    [AllowAnonymous]
     public class AccountController : Controller
     {
         private UserManager<IdentityUser> userManager;
@@ -20,21 +21,42 @@ namespace OrderHandler.UI.Controllers
         }
 
         [HttpGet]
-        [AllowAnonymous]
         public IActionResult Register()
         {
             return View();
         }
 
+        [HttpPost]
+        public async Task<IActionResult> Register(RegisterViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = new IdentityUser { UserName = model.Email, Email = model.Email };
+                var userCreateResult = await userManager.CreateAsync(user, model.Password);
+
+                if (userCreateResult.Succeeded)
+                {
+                    await signInManager.SignInAsync(user, isPersistent: false);
+
+                    return RedirectToAction("index", "home");
+                }
+
+                foreach (var error in userCreateResult.Errors)
+                {
+                    ModelState.AddModelError(string.Empty, error.Description);
+                }
+            }
+
+            return View(model);
+        }
+
         [HttpGet]
-        [AllowAnonymous]
         public IActionResult Login()
         {
             return View();
         }
 
         [HttpPost]
-        [AllowAnonymous]
         public async Task<IActionResult> Login(LoginViewModel model, string returnUrl)
         {
             if (ModelState.IsValid)
@@ -65,39 +87,11 @@ namespace OrderHandler.UI.Controllers
         }
 
         [HttpPost]
-        [AllowAnonymous]
         public async Task<IActionResult> Logout(LoginViewModel model)
         {
             await signInManager.SignOutAsync();
 
             return RedirectToAction("index", "home");
         }
-
-
-        [HttpPost]
-        [AllowAnonymous]
-        public async Task<IActionResult> Register(RegisterViewModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                var user = new IdentityUser { UserName = model.Email, Email = model.Email };
-                var userCreateResult = await userManager.CreateAsync(user, model.Password);
-
-                if (userCreateResult.Succeeded)
-                {
-                    await signInManager.SignInAsync(user, isPersistent: false);
-
-                    return RedirectToAction("index", "home");
-                }
-
-                foreach (var error in userCreateResult.Errors)
-                {
-                    ModelState.AddModelError(string.Empty, error.Description);
-                }
-            }
-
-            return View(model);
-        }
-
     }
 }
