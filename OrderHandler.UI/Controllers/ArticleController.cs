@@ -20,14 +20,11 @@ namespace OrderHandler.UI.Controllers
     {
         public IArticleService _articleContext { get; set; }
 
-        public IOrderRowService _orderRowContext { get; set; }
-
         public IMapper _mapper;
 
         public ArticleController(IArticleService articleContext, IMapper mapper)
         {
             this._articleContext = articleContext;
-            this._orderRowContext = _orderRowContext;
             this._mapper = mapper;
         }
 
@@ -44,7 +41,8 @@ namespace OrderHandler.UI.Controllers
             }
             catch(Exception ex)
             {
-                throw new Exception(ex.Message);
+                Console.WriteLine(ex);
+                throw;
             }
         }
     }
