@@ -28,10 +28,6 @@
 </style>
 <div>
     <dl class="row">
-        <div class="order-section">
-            <h4>Order: @Html.DisplayFor(model => model.Id)<b></b></h4>
-            <h4>Kund: @Html.DisplayFor(model => model.CustomerName)<b></b></h4>
-        </div>
         <table style="width:100%">
             <tr>
                 <th><b>Orderrad Nr</b></th>
@@ -39,7 +35,6 @@
                 <th><b>Artikel Antal</b></th>
                 <th><b>Pris</b></th>
                 <th><b>Artikel NR</b></th>
-                <th><b>Summa order</b></th>
             </tr>
             @foreach (var order in Model.OrderRow)
             {
@@ -49,7 +44,6 @@
                     <td>@order.ArticleAmount</td>
                     <td>@order.Price SEK</td>
                     <td>@order.ArticleNumber</td>
-                    <td>@order.OrderSum SEK</td>
                 </tr>
             }
         </table>
