@@ -31,7 +31,7 @@
             </div>
         </div>
     </div>
-    @Html.ActionLink("Create Order Row", "CreateOrderRow", new { orderId = Model.Id })
+    @Html.ActionLink("Create Order Row", "CreateOrderRowByOrderId", new { orderId = Model.Id })
     <hr/>
     @(Html
             .Grid(Model.OrderRow)
